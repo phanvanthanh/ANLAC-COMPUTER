@@ -36,125 +36,129 @@ CREATE TABLE IF NOT EXISTS `admin_resource` (
   PRIMARY KEY (`id`),
   KEY `admin_resource_parent_foreign` (`parent_id`),
   CONSTRAINT `admin_resource_parent_foreign` FOREIGN KEY (`parent_id`) REFERENCES `admin_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1009 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1016 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table alcomputer.admin_resource: ~114 rows (approximately)
+-- Dumping data for table alcomputer.admin_resource: ~118 rows (approximately)
 /*!40000 ALTER TABLE `admin_resource` DISABLE KEYS */;
 INSERT INTO `admin_resource` (`id`, `ten_hien_thi`, `resource`, `method`, `action`, `parameter`, `parameter_value`, `parent_id`, `created_at`, `updated_at`, `uri`, `status`, `show_menu`, `order`, `icon`) VALUES
 	(1, '#', '#', '#', '#', '#', '#', NULL, '2021-03-12 16:43:45', '2021-03-12 16:46:12', '#', 1, 1, 0, NULL),
-	(872, 'Đăng nhập', 'GET | App\\Http\\Controllers\\Auth\\LoginController@showLoginForm', 'GET', 'App\\Http\\Controllers\\Auth\\LoginController@showLoginForm', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'login', 1, 1, 1000, '<i class="fa fa-lock menu-icon"></i>'),
-	(873, 'Nút đăng nhập', 'POST | App\\Http\\Controllers\\Auth\\LoginController@login', 'POST', 'App\\Http\\Controllers\\Auth\\LoginController@login', '', '', 872, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'login', 1, 2, 1000, NULL),
-	(874, 'Đăng xuất', 'POST | App\\Http\\Controllers\\Auth\\LoginController@logout', 'POST', 'App\\Http\\Controllers\\Auth\\LoginController@logout', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'logout', 1, 2, 1000, '<i class="fa fa-unlock menu-icon"></i>'),
-	(875, 'Đăng ký', 'GET | App\\Http\\Controllers\\Auth\\RegisterController@showRegistrationForm', 'GET', 'App\\Http\\Controllers\\Auth\\RegisterController@showRegistrationForm', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'register', 1, 1, 1000, '<i class="fa fa-vcard-o menu-icon"></i>'),
-	(876, 'Nút đăng ký', 'POST | App\\Http\\Controllers\\Auth\\RegisterController@register', 'POST', 'App\\Http\\Controllers\\Auth\\RegisterController@register', '', '', 875, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'register', 1, 2, 1000, NULL),
-	(877, 'Reset mật khẩu', 'GET | App\\Http\\Controllers\\Auth\\ForgotPasswordController@showLinkRequestForm', 'GET', 'App\\Http\\Controllers\\Auth\\ForgotPasswordController@showLinkRequestForm', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'password/reset', 1, 1, 1000, '<i class="fa fa-refresh menu-icon"></i>'),
-	(878, 'password/email', 'POST | App\\Http\\Controllers\\Auth\\ForgotPasswordController@sendResetLinkEmail', 'POST', 'App\\Http\\Controllers\\Auth\\ForgotPasswordController@sendResetLinkEmail', '', '', 877, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'password/email', 1, 2, 1000, NULL),
-	(879, 'password/reset/{token}', 'GET | App\\Http\\Controllers\\Auth\\ResetPasswordController@showResetForm', 'GET', 'App\\Http\\Controllers\\Auth\\ResetPasswordController@showResetForm', '', '', 877, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'password/reset/{token}', 1, 1, 1000, NULL),
-	(880, 'password/reset', 'POST | App\\Http\\Controllers\\Auth\\ResetPasswordController@reset', 'POST', 'App\\Http\\Controllers\\Auth\\ResetPasswordController@reset', '', '', 877, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'password/reset', 1, 2, 1000, NULL),
-	(881, 'password/confirm', 'GET | App\\Http\\Controllers\\Auth\\ConfirmPasswordController@showConfirmForm', 'GET', 'App\\Http\\Controllers\\Auth\\ConfirmPasswordController@showConfirmForm', '', '', 877, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'password/confirm', 1, 1, 1000, NULL),
-	(882, 'password/confirm', 'POST | App\\Http\\Controllers\\Auth\\ConfirmPasswordController@confirm', 'POST', 'App\\Http\\Controllers\\Auth\\ConfirmPasswordController@confirm', '', '', 877, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'password/confirm', 1, 2, 1000, NULL),
-	(883, 'Danh mục phường xã', 'GET | App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXa', 'GET', 'App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXa', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'dm-phuong-xa', 1, 1, 18, '<i class="menu-icon icon-location-pin"></i>'),
-	(884, 'Import danh mục phường xã', 'POST | App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXaAndImport', 'POST', 'App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXaAndImport', '', '', 883, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'dm-phuong-xa/import', 1, 2, 1000, NULL),
-	(885, 'Danh mục quận huyện', 'GET | App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyen', 'GET', 'App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'dm-quan-huyen', 1, 1, 17, '<i class="menu-icon icon-location-pin"></i>'),
-	(886, 'Import danh mục quận/huyện', 'POST | App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyenAndImport', 'POST', 'App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyenAndImport', '', '', 885, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'dm-quan-huyen/import', 1, 2, 1000, NULL),
-	(887, 'Đơn vị', 'GET | App\\Modules\\DonVi\\Controllers\\DonViController@donVi', 'GET', 'App\\Modules\\DonVi\\Controllers\\DonViController@donVi', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'don-vi', 1, 1, 14, '<i class="fa fa-university menu-icon"></i>'),
-	(888, 'Xem danh sách đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@danhSachDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@danhSachDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'danh-sach-don-vi', 1, 2, 1000, NULL),
-	(889, 'Thêm đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@themDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@themDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'them-don-vi', 1, 2, 1000, NULL),
-	(890, 'Load thông tin đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@donViSingle', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@donViSingle', '', '', 887, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'don-vi-single', 1, 2, 1000, NULL),
-	(891, 'Cập nhật đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@capNhatDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@capNhatDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'cap-nhat-don-vi', 1, 2, 1000, NULL),
-	(892, 'Xóa đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@xoaDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@xoaDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'xoa-don-vi', 1, 2, 1000, NULL),
-	(893, 'Nhóm quyền', 'GET | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyen', 'GET', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'nhom-quyen', 1, 1, 11, '<i class="fa fa-database menu-icon"></i>'),
-	(894, 'Xem danh sách nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@danhSachNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@danhSachNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'danh-sach-nhom-quyen', 1, 2, 1000, NULL),
-	(895, 'Thêm nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@themNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@themNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'them-nhom-quyen', 1, 2, 1000, NULL),
-	(896, 'Load thông tin nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyenSingle', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyenSingle', '', '', 893, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'nhom-quyen-single', 1, 2, 1000, NULL),
-	(897, 'Cập nhật nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@capNhatNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@capNhatNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'cap-nhat-nhom-quyen', 1, 2, 1000, NULL),
-	(898, 'Xóa nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@xoaNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@xoaNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'xoa-nhom-quyen', 1, 2, 1000, NULL),
-	(899, 'Phân quyền', 'GET | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyen', 'GET', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'phan-quyen', 1, 1, 12, '<i class="fa fa-cogs menu-icon"></i>'),
-	(900, 'Lưu thông tin quyền', 'POST | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenPost', 'POST', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenPost', '', '', 899, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'phan-quyen-post', 1, 2, 1000, NULL),
-	(901, 'Load danh sách nhóm quyền', 'POST | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachNhomQuyen', 'POST', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachNhomQuyen', '', '', 899, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'phan-quyen/danh-sach-nhom-quyen', 1, 2, 1000, NULL),
-	(902, 'Load danh sách quyền', 'POST | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachQuyenTheoNhomQuyenId', 'POST', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachQuyenTheoNhomQuyenId', '', '', 899, '2021-03-12 16:43:45', '2021-04-02 20:11:07', 'phan-quyen/danh-sach-quyen-theo-nhom-quyen-id', 1, 2, 1000, NULL),
-	(903, 'Danh mục chức năng', 'GET | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyen', 'GET', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'tai-nguyen', 1, 1, 13, '<i class="menu-icon icon-list"></i>'),
-	(904, 'Xem danh sách tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@danhSachTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@danhSachTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'danh-sach-tai-nguyen', 1, 2, 1000, NULL),
-	(905, 'Quét tài nguyên hệ thống', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@quetTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@quetTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'quet-tai-nguyen', 1, 2, 1000, NULL),
-	(906, 'Thêm tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@themTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@themTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'them-tai-nguyen', 1, 2, 1000, NULL),
-	(907, 'Load thông tin tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyenSingle', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyenSingle', '', '', 903, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'tai-nguyen-single', 1, 2, 1000, NULL),
-	(908, 'Cập nhật tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@capNhatTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@capNhatTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'cap-nhat-tai-nguyen', 1, 2, 1000, NULL),
-	(909, 'Xóa tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@xoaTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@xoaTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'xoa-tai-nguyen', 1, 2, 1000, NULL),
-	(910, 'Trang chủ', 'GET | App\\Modules\\TrangChu\\Controllers\\TrangChuController@home', 'GET', 'App\\Modules\\TrangChu\\Controllers\\TrangChuController@home', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:08', '/', 1, 1, 1, '<i class="fa fa-home menu-icon"></i>'),
-	(911, 'Tài khoản', 'GET | App\\Modules\\User\\Controllers\\UserController@user', 'GET', 'App\\Modules\\User\\Controllers\\UserController@user', '', '', 1, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'user', 1, 1, 10, '<i class="fa fa-address-book menu-icon"></i>'),
-	(912, 'Xem danh sách tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@danhSachUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@danhSachUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'danh-sach-user', 1, 2, 1000, NULL),
-	(913, 'Tạo tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@themUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@themUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'them-user', 1, 2, 1000, NULL),
-	(914, 'Load thông tin tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@userSingle', 'POST', 'App\\Modules\\User\\Controllers\\UserController@userSingle', '', '', 911, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'user-single', 1, 2, 1000, NULL),
-	(915, 'Cập nhật tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@capNhatUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@capNhatUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'cap-nhat-user', 1, 2, 1000, NULL),
-	(916, 'Xóa tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@xoaUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@xoaUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-02 20:11:08', 'xoa-user', 1, 2, 1000, NULL),
-	(917, 'Sản phẩm', 'GET | App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPham', 'GET', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPham', '', '', 1, '2021-03-13 19:23:18', '2021-04-02 20:11:07', 'san-pham', 1, 1, 7, '<i class="fa fa-desktop menu-icon"></i>'),
-	(918, 'Xem danh sách sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@danhSachSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@danhSachSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-02 20:11:08', 'danh-sach-san-pham', 1, 2, 1000, NULL),
-	(919, 'Thêm sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@themSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@themSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-02 20:11:08', 'them-san-pham', 1, 2, 1000, NULL),
-	(920, 'Load sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPhamSingle', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPhamSingle', '', '', 917, '2021-03-13 19:23:18', '2021-04-02 20:11:08', 'san-pham-single', 1, 2, 1000, NULL),
-	(921, 'Cập nhật sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@capNhatSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@capNhatSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-02 20:11:08', 'cap-nhat-san-pham', 1, 2, 1000, NULL),
-	(922, 'Xóa sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@xoaSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@xoaSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-02 20:11:08', 'xoa-san-pham', 1, 2, 1000, NULL),
-	(923, 'Nhà cung cấp', 'GET | App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTac', 'GET', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTac', '', '', 1, '2021-03-13 22:13:42', '2021-04-02 20:11:07', 'doi-tac', 1, 1, 9, '<i class="fa fa-handshake-o menu-icon"></i>'),
-	(924, 'Xem danh sách đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@danhSachDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@danhSachDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-02 20:11:07', 'danh-sach-doi-tac', 1, 2, 1000, NULL),
-	(925, 'Thêm đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@themDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@themDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-02 20:11:07', 'them-doi-tac', 1, 2, 1000, NULL),
-	(926, 'Load đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTacSingle', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTacSingle', '', '', 923, '2021-03-13 22:13:42', '2021-04-02 20:11:07', 'doi-tac-single', 1, 2, 1000, NULL),
-	(927, 'Cập nhật thông tin đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@capNhatDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@capNhatDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-02 20:11:07', 'cap-nhat-doi-tac', 1, 2, 1000, NULL),
-	(928, 'Xóa đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@xoaDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@xoaDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-02 20:11:07', 'xoa-doi-tac', 1, 2, 1000, NULL),
-	(929, 'Khách hàng', 'GET | App\\Modules\\KhachHang\\Controllers\\KhachHangController@KhachHang', 'GET', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@KhachHang', '', '', 1, '2021-03-13 22:35:07', '2021-04-02 20:11:07', 'khach-hang', 1, 1, 8, '<i class="fa fa-users menu-icon"></i>'),
-	(930, 'Xem danh sách khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@danhSachKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@danhSachKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-02 20:11:07', 'danh-sach-khach-hang', 1, 2, 1000, NULL),
-	(931, 'Thêm khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@themKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@themKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-02 20:11:07', 'them-khach-hang', 1, 2, 1000, NULL),
-	(932, 'Load thông tin khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@khachHangSingle', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@khachHangSingle', '', '', 929, '2021-03-13 22:35:07', '2021-04-02 20:11:07', 'khach-hang-single', 1, 2, 1000, NULL),
-	(933, 'Cập nhật khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@capNhatKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@capNhatKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-02 20:11:07', 'cap-nhat-khach-hang', 1, 2, 1000, NULL),
-	(934, 'Xóa khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@xoaKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@xoaKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-02 20:11:07', 'xoa-khach-hang', 1, 2, 1000, NULL),
-	(935, 'Phiếu nhập kho', 'GET | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhap', 'GET', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhap', '', '', 1, '2021-03-14 07:43:13', '2021-04-02 20:11:07', 'phieu-nhap', 1, 1, 3, '<i class="fa fa-download menu-icon"></i>'),
-	(936, 'Xem danh sách phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@danhSachPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@danhSachPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-02 20:11:07', 'danh-sach-phieu-nhap', 1, 2, 1000, NULL),
-	(937, 'Lập phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-02 20:11:07', 'them-phieu-nhap', 1, 2, 1000, NULL),
-	(938, 'Load thông tin phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhapSingle', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhapSingle', '', '', 935, '2021-03-14 07:43:13', '2021-04-02 20:11:07', 'phieu-nhap-single', 1, 2, 1000, NULL),
-	(939, 'Cập nhật phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@capNhatPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@capNhatPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-02 20:11:07', 'cap-nhat-phieu-nhap', 1, 2, 1000, NULL),
-	(940, 'Xóa phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-02 20:11:07', 'xoa-phieu-nhap', 1, 2, 1000, NULL),
-	(941, 'Thêm sản phẩm vào phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themChiTietPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themChiTietPhieuNhap', '', '', 935, '2021-03-14 13:10:10', '2021-04-02 20:11:07', 'them-chi-tiet-phieu-nhap', 1, 2, 1000, NULL),
-	(942, 'Load chi tiết phiếu nhập', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@loadChiTietPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@loadChiTietPhieuNhap', '', '', 935, '2021-03-14 14:57:49', '2021-04-02 20:11:07', 'load-chi-tiet-phieu-nhap', 1, 2, 1000, NULL),
-	(943, 'Xóa chi tiết phiếu nhập', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaChiTietPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaChiTietPhieuNhap', '', '', 935, '2021-03-14 15:14:00', '2021-04-02 20:11:07', 'xoa-chi-tiet-phieu-nhap', 1, 2, 1000, NULL),
-	(959, 'Phiếu xuất kho', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuat', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuat', '', '', 1, '2021-03-19 13:42:07', '2021-04-02 20:11:07', 'phieu-xuat', 1, 1, 4, '<i class="fa fa-shopping-cart menu-icon"></i>'),
-	(960, 'Danh sách phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@danhSachPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@danhSachPhieuXuat', '', '', 959, '2021-03-19 13:42:07', '2021-04-02 20:11:07', 'danh-sach-phieu-xuat', 1, 2, 1000, NULL),
-	(961, 'Load phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuatSingle', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuatSingle', '', '', 959, '2021-03-19 13:49:40', '2021-04-02 20:11:07', 'phieu-xuat-single', 1, 2, 1000, NULL),
-	(963, 'Thêm phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-02 20:11:07', 'them-phieu-xuat', 1, 2, 1000, NULL),
-	(964, 'Xóa phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-02 20:11:07', 'xoa-phieu-xuat', 1, 2, 1000, NULL),
-	(965, 'Cập nhật phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@capNhatPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@capNhatPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-02 20:11:07', 'cap-nhat-phieu-xuat', 1, 2, 1000, NULL),
-	(966, 'Thêm phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themChiTietPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themChiTietPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-02 20:11:07', 'them-chi-tiet-phieu-xuat', 1, 2, 1000, NULL),
-	(967, 'Load chi tiết phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@loadChiTietPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@loadChiTietPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-02 20:11:07', 'load-chi-tiet-phieu-xuat', 1, 2, 1000, NULL),
-	(968, 'Xóa chi tiết phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaChiTietPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaChiTietPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-02 20:11:07', 'xoa-chi-tiet-phieu-xuat', 1, 2, 1000, NULL),
-	(969, 'Lấy thông tin đối tác theo tên và mã đối tác', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@layThongTinDoiTacTheoTenVaMa', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@layThongTinDoiTacTheoTenVaMa', '', '', 935, '2021-03-19 14:35:28', '2021-04-02 20:11:07', 'lay-thong-tin-doi-tac-theo-ten-va-ma', 1, 2, 1000, NULL),
-	(970, 'Lấy thông tin khách hàng theo tên và mã', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinKhachHangTheoTenVaMa', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinKhachHangTheoTenVaMa', '', '', 959, '2021-03-19 14:35:28', '2021-04-02 20:11:07', 'lay-thong-tin-khach-hang-theo-ten-va-ma', 1, 2, 1000, NULL),
-	(971, 'Lấy chi tiết sản phẩm theo tên và mã', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinSanPhamTheoTenVaMa', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinSanPhamTheoTenVaMa', '', '', 959, '2021-03-19 15:37:51', '2021-04-02 20:11:07', 'lay-thong-tin-san-pham-theo-ten-va-ma', 1, 2, 1000, NULL),
+	(872, 'Đăng nhập', 'GET | App\\Http\\Controllers\\Auth\\LoginController@showLoginForm', 'GET', 'App\\Http\\Controllers\\Auth\\LoginController@showLoginForm', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'login', 1, 1, 1000, '<i class="fa fa-lock menu-icon"></i>'),
+	(873, 'Nút đăng nhập', 'POST | App\\Http\\Controllers\\Auth\\LoginController@login', 'POST', 'App\\Http\\Controllers\\Auth\\LoginController@login', '', '', 872, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'login', 1, 2, 1000, NULL),
+	(874, 'Đăng xuất', 'POST | App\\Http\\Controllers\\Auth\\LoginController@logout', 'POST', 'App\\Http\\Controllers\\Auth\\LoginController@logout', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'logout', 1, 2, 1000, '<i class="fa fa-unlock menu-icon"></i>'),
+	(875, 'Đăng ký', 'GET | App\\Http\\Controllers\\Auth\\RegisterController@showRegistrationForm', 'GET', 'App\\Http\\Controllers\\Auth\\RegisterController@showRegistrationForm', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'register', 1, 1, 1000, '<i class="fa fa-vcard-o menu-icon"></i>'),
+	(876, 'Nút đăng ký', 'POST | App\\Http\\Controllers\\Auth\\RegisterController@register', 'POST', 'App\\Http\\Controllers\\Auth\\RegisterController@register', '', '', 875, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'register', 1, 2, 1000, NULL),
+	(877, 'Reset mật khẩu', 'GET | App\\Http\\Controllers\\Auth\\ForgotPasswordController@showLinkRequestForm', 'GET', 'App\\Http\\Controllers\\Auth\\ForgotPasswordController@showLinkRequestForm', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'password/reset', 1, 1, 1000, '<i class="fa fa-refresh menu-icon"></i>'),
+	(878, 'password/email', 'POST | App\\Http\\Controllers\\Auth\\ForgotPasswordController@sendResetLinkEmail', 'POST', 'App\\Http\\Controllers\\Auth\\ForgotPasswordController@sendResetLinkEmail', '', '', 877, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'password/email', 1, 2, 1000, NULL),
+	(879, 'password/reset/{token}', 'GET | App\\Http\\Controllers\\Auth\\ResetPasswordController@showResetForm', 'GET', 'App\\Http\\Controllers\\Auth\\ResetPasswordController@showResetForm', '', '', 877, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'password/reset/{token}', 1, 1, 1000, NULL),
+	(880, 'password/reset', 'POST | App\\Http\\Controllers\\Auth\\ResetPasswordController@reset', 'POST', 'App\\Http\\Controllers\\Auth\\ResetPasswordController@reset', '', '', 877, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'password/reset', 1, 2, 1000, NULL),
+	(881, 'password/confirm', 'GET | App\\Http\\Controllers\\Auth\\ConfirmPasswordController@showConfirmForm', 'GET', 'App\\Http\\Controllers\\Auth\\ConfirmPasswordController@showConfirmForm', '', '', 877, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'password/confirm', 1, 1, 1000, NULL),
+	(882, 'password/confirm', 'POST | App\\Http\\Controllers\\Auth\\ConfirmPasswordController@confirm', 'POST', 'App\\Http\\Controllers\\Auth\\ConfirmPasswordController@confirm', '', '', 877, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'password/confirm', 1, 2, 1000, NULL),
+	(883, 'Danh mục phường xã', 'GET | App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXa', 'GET', 'App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXa', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'dm-phuong-xa', 1, 1, 18, '<i class="menu-icon icon-location-pin"></i>'),
+	(884, 'Import danh mục phường xã', 'POST | App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXaAndImport', 'POST', 'App\\Modules\\DmPhuongXa\\Controllers\\DmPhuongXaController@dmPhuongXaAndImport', '', '', 883, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'dm-phuong-xa/import', 1, 2, 1000, NULL),
+	(885, 'Danh mục quận huyện', 'GET | App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyen', 'GET', 'App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'dm-quan-huyen', 1, 1, 17, '<i class="menu-icon icon-location-pin"></i>'),
+	(886, 'Import danh mục quận/huyện', 'POST | App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyenAndImport', 'POST', 'App\\Modules\\DmQuanHuyen\\Controllers\\DmQuanHuyenController@dmQuanHuyenAndImport', '', '', 885, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'dm-quan-huyen/import', 1, 2, 1000, NULL),
+	(887, 'Đơn vị', 'GET | App\\Modules\\DonVi\\Controllers\\DonViController@donVi', 'GET', 'App\\Modules\\DonVi\\Controllers\\DonViController@donVi', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'don-vi', 1, 1, 14, '<i class="fa fa-university menu-icon"></i>'),
+	(888, 'Xem danh sách đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@danhSachDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@danhSachDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'danh-sach-don-vi', 1, 2, 1000, NULL),
+	(889, 'Thêm đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@themDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@themDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'them-don-vi', 1, 2, 1000, NULL),
+	(890, 'Load thông tin đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@donViSingle', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@donViSingle', '', '', 887, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'don-vi-single', 1, 2, 1000, NULL),
+	(891, 'Cập nhật đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@capNhatDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@capNhatDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'cap-nhat-don-vi', 1, 2, 1000, NULL),
+	(892, 'Xóa đơn vị', 'POST | App\\Modules\\DonVi\\Controllers\\DonViController@xoaDonVi', 'POST', 'App\\Modules\\DonVi\\Controllers\\DonViController@xoaDonVi', '', '', 887, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'xoa-don-vi', 1, 2, 1000, NULL),
+	(893, 'Nhóm quyền', 'GET | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyen', 'GET', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'nhom-quyen', 1, 1, 11, '<i class="fa fa-database menu-icon"></i>'),
+	(894, 'Xem danh sách nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@danhSachNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@danhSachNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'danh-sach-nhom-quyen', 1, 2, 1000, NULL),
+	(895, 'Thêm nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@themNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@themNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'them-nhom-quyen', 1, 2, 1000, NULL),
+	(896, 'Load thông tin nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyenSingle', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@nhomQuyenSingle', '', '', 893, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'nhom-quyen-single', 1, 2, 1000, NULL),
+	(897, 'Cập nhật nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@capNhatNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@capNhatNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'cap-nhat-nhom-quyen', 1, 2, 1000, NULL),
+	(898, 'Xóa nhóm quyền', 'POST | App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@xoaNhomQuyen', 'POST', 'App\\Modules\\NhomQuyen\\Controllers\\NhomQuyenController@xoaNhomQuyen', '', '', 893, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'xoa-nhom-quyen', 1, 2, 1000, NULL),
+	(899, 'Phân quyền', 'GET | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyen', 'GET', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'phan-quyen', 1, 1, 12, '<i class="fa fa-cogs menu-icon"></i>'),
+	(900, 'Lưu thông tin quyền', 'POST | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenPost', 'POST', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenPost', '', '', 899, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'phan-quyen-post', 1, 2, 1000, NULL),
+	(901, 'Load danh sách nhóm quyền', 'POST | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachNhomQuyen', 'POST', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachNhomQuyen', '', '', 899, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'phan-quyen/danh-sach-nhom-quyen', 1, 2, 1000, NULL),
+	(902, 'Load danh sách quyền', 'POST | App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachQuyenTheoNhomQuyenId', 'POST', 'App\\Modules\\PhanQuyen\\Controllers\\PhanQuyenController@phanQuyenDanhSachQuyenTheoNhomQuyenId', '', '', 899, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'phan-quyen/danh-sach-quyen-theo-nhom-quyen-id', 1, 2, 1000, NULL),
+	(903, 'Danh mục chức năng', 'GET | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyen', 'GET', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyen', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'tai-nguyen', 1, 1, 13, '<i class="menu-icon icon-list"></i>'),
+	(904, 'Xem danh sách tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@danhSachTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@danhSachTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'danh-sach-tai-nguyen', 1, 2, 1000, NULL),
+	(905, 'Quét tài nguyên hệ thống', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@quetTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@quetTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'quet-tai-nguyen', 1, 2, 1000, NULL),
+	(906, 'Thêm tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@themTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@themTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'them-tai-nguyen', 1, 2, 1000, NULL),
+	(907, 'Load thông tin tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyenSingle', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@taiNguyenSingle', '', '', 903, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'tai-nguyen-single', 1, 2, 1000, NULL),
+	(908, 'Cập nhật tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@capNhatTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@capNhatTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'cap-nhat-tai-nguyen', 1, 2, 1000, NULL),
+	(909, 'Xóa tài nguyên', 'POST | App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@xoaTaiNguyen', 'POST', 'App\\Modules\\TaiNguyen\\Controllers\\TaiNguyenController@xoaTaiNguyen', '', '', 903, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'xoa-tai-nguyen', 1, 2, 1000, NULL),
+	(910, 'Trang chủ', 'GET | App\\Modules\\TrangChu\\Controllers\\TrangChuController@home', 'GET', 'App\\Modules\\TrangChu\\Controllers\\TrangChuController@home', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', '/', 1, 1, 1, '<i class="fa fa-home menu-icon"></i>'),
+	(911, 'Tài khoản', 'GET | App\\Modules\\User\\Controllers\\UserController@user', 'GET', 'App\\Modules\\User\\Controllers\\UserController@user', '', '', 1, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'user', 1, 1, 10, '<i class="fa fa-address-book menu-icon"></i>'),
+	(912, 'Xem danh sách tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@danhSachUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@danhSachUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'danh-sach-user', 1, 2, 1000, NULL),
+	(913, 'Tạo tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@themUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@themUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'them-user', 1, 2, 1000, NULL),
+	(914, 'Load thông tin tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@userSingle', 'POST', 'App\\Modules\\User\\Controllers\\UserController@userSingle', '', '', 911, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'user-single', 1, 2, 1000, NULL),
+	(915, 'Cập nhật tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@capNhatUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@capNhatUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'cap-nhat-user', 1, 2, 1000, NULL),
+	(916, 'Xóa tài khoản', 'POST | App\\Modules\\User\\Controllers\\UserController@xoaUser', 'POST', 'App\\Modules\\User\\Controllers\\UserController@xoaUser', '', '', 911, '2021-03-12 16:43:45', '2021-04-05 09:29:25', 'xoa-user', 1, 2, 1000, NULL),
+	(917, 'Sản phẩm', 'GET | App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPham', 'GET', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPham', '', '', 1, '2021-03-13 19:23:18', '2021-04-05 09:29:25', 'san-pham', 1, 1, 7, '<i class="fa fa-desktop menu-icon"></i>'),
+	(918, 'Xem danh sách sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@danhSachSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@danhSachSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-05 09:29:25', 'danh-sach-san-pham', 1, 2, 1000, NULL),
+	(919, 'Thêm sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@themSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@themSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-05 09:29:25', 'them-san-pham', 1, 2, 1000, NULL),
+	(920, 'Load sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPhamSingle', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@sanPhamSingle', '', '', 917, '2021-03-13 19:23:18', '2021-04-05 09:29:25', 'san-pham-single', 1, 2, 1000, NULL),
+	(921, 'Cập nhật sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@capNhatSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@capNhatSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-05 09:29:25', 'cap-nhat-san-pham', 1, 2, 1000, NULL),
+	(922, 'Xóa sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@xoaSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@xoaSanPham', '', '', 917, '2021-03-13 19:23:18', '2021-04-05 09:29:25', 'xoa-san-pham', 1, 2, 1000, NULL),
+	(923, 'Nhà cung cấp', 'GET | App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTac', 'GET', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTac', '', '', 1, '2021-03-13 22:13:42', '2021-04-05 09:29:25', 'doi-tac', 1, 1, 9, '<i class="fa fa-handshake-o menu-icon"></i>'),
+	(924, 'Xem danh sách đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@danhSachDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@danhSachDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-05 09:29:25', 'danh-sach-doi-tac', 1, 2, 1000, NULL),
+	(925, 'Thêm đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@themDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@themDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-05 09:29:25', 'them-doi-tac', 1, 2, 1000, NULL),
+	(926, 'Load đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTacSingle', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@doiTacSingle', '', '', 923, '2021-03-13 22:13:42', '2021-04-05 09:29:25', 'doi-tac-single', 1, 2, 1000, NULL),
+	(927, 'Cập nhật thông tin đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@capNhatDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@capNhatDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-05 09:29:25', 'cap-nhat-doi-tac', 1, 2, 1000, NULL),
+	(928, 'Xóa đối tác', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@xoaDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@xoaDoiTac', '', '', 923, '2021-03-13 22:13:42', '2021-04-05 09:29:25', 'xoa-doi-tac', 1, 2, 1000, NULL),
+	(929, 'Khách hàng', 'GET | App\\Modules\\KhachHang\\Controllers\\KhachHangController@KhachHang', 'GET', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@KhachHang', '', '', 1, '2021-03-13 22:35:07', '2021-04-05 09:29:25', 'khach-hang', 1, 1, 8, '<i class="fa fa-users menu-icon"></i>'),
+	(930, 'Xem danh sách khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@danhSachKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@danhSachKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-05 09:29:25', 'danh-sach-khach-hang', 1, 2, 1000, NULL),
+	(931, 'Thêm khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@themKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@themKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-05 09:29:25', 'them-khach-hang', 1, 2, 1000, NULL),
+	(932, 'Load thông tin khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@khachHangSingle', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@khachHangSingle', '', '', 929, '2021-03-13 22:35:07', '2021-04-05 09:29:25', 'khach-hang-single', 1, 2, 1000, NULL),
+	(933, 'Cập nhật khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@capNhatKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@capNhatKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-05 09:29:25', 'cap-nhat-khach-hang', 1, 2, 1000, NULL),
+	(934, 'Xóa khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@xoaKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@xoaKhachHang', '', '', 929, '2021-03-13 22:35:07', '2021-04-05 09:29:25', 'xoa-khach-hang', 1, 2, 1000, NULL),
+	(935, 'Phiếu nhập kho', 'GET | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhap', 'GET', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhap', '', '', 1, '2021-03-14 07:43:13', '2021-04-05 09:29:25', 'phieu-nhap', 1, 1, 3, '<i class="fa fa-download menu-icon"></i>'),
+	(936, 'Xem danh sách phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@danhSachPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@danhSachPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-05 09:29:25', 'danh-sach-phieu-nhap', 1, 2, 1000, NULL),
+	(937, 'Lập phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-05 09:29:25', 'them-phieu-nhap', 1, 2, 1000, NULL),
+	(938, 'Load thông tin phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhapSingle', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@phieuNhapSingle', '', '', 935, '2021-03-14 07:43:13', '2021-04-05 09:29:25', 'phieu-nhap-single', 1, 2, 1000, NULL),
+	(939, 'Cập nhật phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@capNhatPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@capNhatPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-05 09:29:25', 'cap-nhat-phieu-nhap', 1, 2, 1000, NULL),
+	(940, 'Xóa phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaPhieuNhap', '', '', 935, '2021-03-14 07:43:13', '2021-04-05 09:29:25', 'xoa-phieu-nhap', 1, 2, 1000, NULL),
+	(941, 'Thêm sản phẩm vào phiếu nhập kho', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themChiTietPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@themChiTietPhieuNhap', '', '', 935, '2021-03-14 13:10:10', '2021-04-05 09:29:25', 'them-chi-tiet-phieu-nhap', 1, 2, 1000, NULL),
+	(942, 'Load chi tiết phiếu nhập', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@loadChiTietPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@loadChiTietPhieuNhap', '', '', 935, '2021-03-14 14:57:49', '2021-04-05 09:29:25', 'load-chi-tiet-phieu-nhap', 1, 2, 1000, NULL),
+	(943, 'Xóa chi tiết phiếu nhập', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaChiTietPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@xoaChiTietPhieuNhap', '', '', 935, '2021-03-14 15:14:00', '2021-04-05 09:29:25', 'xoa-chi-tiet-phieu-nhap', 1, 2, 1000, NULL),
+	(959, 'Phiếu xuất kho', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuat', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuat', '', '', 1, '2021-03-19 13:42:07', '2021-04-05 09:29:25', 'phieu-xuat', 1, 1, 4, '<i class="fa fa-shopping-cart menu-icon"></i>'),
+	(960, 'Danh sách phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@danhSachPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@danhSachPhieuXuat', '', '', 959, '2021-03-19 13:42:07', '2021-04-05 09:29:25', 'danh-sach-phieu-xuat', 1, 2, 1000, NULL),
+	(961, 'Load phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuatSingle', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@phieuXuatSingle', '', '', 959, '2021-03-19 13:49:40', '2021-04-05 09:29:25', 'phieu-xuat-single', 1, 2, 1000, NULL),
+	(963, 'Thêm phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-05 09:29:25', 'them-phieu-xuat', 1, 2, 1000, NULL),
+	(964, 'Xóa phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-05 09:29:25', 'xoa-phieu-xuat', 1, 2, 1000, NULL),
+	(965, 'Cập nhật phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@capNhatPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@capNhatPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-05 09:29:25', 'cap-nhat-phieu-xuat', 1, 2, 1000, NULL),
+	(966, 'Thêm phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themChiTietPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@themChiTietPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-05 09:29:25', 'them-chi-tiet-phieu-xuat', 1, 2, 1000, NULL),
+	(967, 'Load chi tiết phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@loadChiTietPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@loadChiTietPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-05 09:29:25', 'load-chi-tiet-phieu-xuat', 1, 2, 1000, NULL),
+	(968, 'Xóa chi tiết phiếu xuất', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaChiTietPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@xoaChiTietPhieuXuat', '', '', 959, '2021-03-19 13:55:56', '2021-04-05 09:29:25', 'xoa-chi-tiet-phieu-xuat', 1, 2, 1000, NULL),
+	(969, 'Lấy thông tin đối tác theo tên và mã đối tác', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@layThongTinDoiTacTheoTenVaMa', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@layThongTinDoiTacTheoTenVaMa', '', '', 935, '2021-03-19 14:35:28', '2021-04-05 09:29:25', 'lay-thong-tin-doi-tac-theo-ten-va-ma', 1, 2, 1000, NULL),
+	(970, 'Lấy thông tin khách hàng theo tên và mã', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinKhachHangTheoTenVaMa', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinKhachHangTheoTenVaMa', '', '', 959, '2021-03-19 14:35:28', '2021-04-05 09:29:25', 'lay-thong-tin-khach-hang-theo-ten-va-ma', 1, 2, 1000, NULL),
+	(971, 'Lấy chi tiết sản phẩm theo tên và mã', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinSanPhamTheoTenVaMa', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@layThongTinSanPhamTheoTenVaMa', '', '', 959, '2021-03-19 15:37:51', '2021-04-05 09:29:25', 'lay-thong-tin-san-pham-theo-ten-va-ma', 1, 2, 1000, NULL),
 	(972, 'Báo cáo - Thống kê', NULL, 'GET', NULL, NULL, NULL, 1, '2021-03-21 15:06:34', '2021-04-01 15:35:32', NULL, 1, 1, 2, '<i class="fa fa-bar-chart-o menu-icon"></i>'),
-	(973, 'Thống kê xuất nhập tồn', 'GET | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@thongKeXuatNhapTon', 'GET', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@thongKeXuatNhapTon', '', '', 972, '2021-03-21 15:06:39', '2021-04-02 20:11:08', 'thong-ke-xuat-nhap-ton', 1, 1, 1000, NULL),
-	(974, 'Danh sách thống kê xuất nhập tồn', 'POST | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@danhSachThongKeXuatNhapTon', 'POST', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@danhSachThongKeXuatNhapTon', '', '', 973, '2021-03-21 15:06:39', '2021-04-02 20:11:08', 'danh-sach-thong-ke-xuat-nhap-ton', 1, 2, 1000, NULL),
-	(975, 'Dashboard', 'GET | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@dashboard', 'GET', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@dashboard', '', '', 972, '2021-03-22 08:27:09', '2021-04-02 20:11:08', 'dashboard', 1, 1, 1, NULL),
-	(978, 'Import phiếu nhập bằng Excel', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@importPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@importPhieuNhap', '', '', 935, '2021-03-23 15:17:37', '2021-04-02 20:11:07', 'import-phieu-nhap', 1, 2, 1000, NULL),
-	(979, 'Import phiếu xuất kho', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@importPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@importPhieuXuat', '', '', 959, '2021-03-24 08:54:34', '2021-04-02 20:11:07', 'import-phieu-xuat', 1, 2, 1000, NULL),
-	(980, 'Xuất thống kê', 'GET | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@exportThongKe', 'GET', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@exportThongKe', '', '', 972, '2021-03-27 06:02:58', '2021-04-02 20:11:08', 'export-thong-ke', 1, 2, 1000, NULL),
-	(981, 'Export phiếu xuất', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@exportPhieuXuat', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@exportPhieuXuat', '', '', 959, '2021-03-28 13:02:01', '2021-04-02 20:11:07', 'export-phieu-xuat', 1, 2, 1000, NULL),
-	(982, 'Export phiếu nhập', 'GET | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@exportPhieuNhap', 'GET', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@exportPhieuNhap', '', '', 935, '2021-03-28 13:13:04', '2021-04-02 20:11:07', 'export-phieu-nhap', 1, 2, 1000, NULL),
-	(983, 'Import sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@importSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@importSanPham', '', '', 917, '2021-03-28 13:39:10', '2021-04-02 20:11:08', 'import-san-pham', 1, 2, 1000, NULL),
-	(984, 'Import khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@importKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@importKhachHang', '', '', 929, '2021-03-28 13:57:40', '2021-04-02 20:11:07', 'import-khach-hang', 1, 2, 1000, NULL),
-	(985, 'Import nhà cung cấp', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@importDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@importDoiTac', '', '', 923, '2021-03-28 14:07:34', '2021-04-02 20:11:07', 'import-doi-tac', 1, 2, 1000, NULL),
-	(986, 'In phiếu xuất kho', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuXuat', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuXuat', '', '', 959, '2021-03-29 16:03:35', '2021-04-02 20:11:07', 'in-phieu-xuat', 1, 2, 1000, NULL),
-	(987, 'In phiếu giao hàng', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuGiaoHang', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuGiaoHang', '', '', 959, '2021-03-29 16:03:35', '2021-04-02 20:11:07', 'in-phieu-giao-hang', 1, 2, 1000, NULL),
-	(988, 'Công nợ', 'GET | App\\Modules\\CongNo\\Controllers\\CongNoController@congNo', 'GET', 'App\\Modules\\CongNo\\Controllers\\CongNoController@congNo', '', '', 1, '2021-04-01 08:12:37', '2021-04-02 20:11:07', 'cong-no', 1, 1, 5, '<i class="fa fa-briefcase menu-icon"></i>'),
-	(989, 'Xem danh sách công nợ', 'POST | App\\Modules\\CongNo\\Controllers\\CongNoController@danhSachCongNo', 'POST', 'App\\Modules\\CongNo\\Controllers\\CongNoController@danhSachCongNo', '', '', 988, '2021-04-01 08:12:37', '2021-04-02 20:11:07', 'danh-sach-cong-no', 1, 2, 1000, NULL),
-	(990, 'Load thông tin công nợ', 'POST | App\\Modules\\CongNo\\Controllers\\CongNoController@congNoSingle', 'POST', 'App\\Modules\\CongNo\\Controllers\\CongNoController@congNoSingle', '', '', 988, '2021-04-01 08:12:37', '2021-04-02 20:11:07', 'cong-no-single', 1, 2, 1000, NULL),
-	(997, 'Phiếu chi', 'GET | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChi', 'GET', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChi', '', '', 1, '2021-04-01 15:32:51', '2021-04-02 20:11:07', 'phieu-chi', 1, 1, 6, '<i class="fa fa-external-link-square menu-icon"></i>'),
-	(998, 'Xem danh sách phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@danhSachPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@danhSachPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-02 20:11:07', 'danh-sach-phieu-chi', 1, 2, 6, NULL),
-	(999, 'Thêm phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@themPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@themPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-02 20:11:07', 'them-phieu-chi', 1, 2, 1000, NULL),
-	(1000, 'Load phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChiSingle', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChiSingle', '', '', 997, '2021-04-01 15:32:51', '2021-04-02 20:11:07', 'phieu-chi-single', 1, 2, 1000, NULL),
-	(1001, 'Cập nhật phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@capNhatPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@capNhatPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-02 20:11:07', 'cap-nhat-phieu-chi', 1, 2, 1000, NULL),
-	(1002, 'Xóa phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@xoaPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@xoaPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-02 20:11:07', 'xoa-phieu-chi', 1, 2, 1000, NULL),
-	(1003, 'Đơn vị tính', 'GET | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinh', 'GET', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinh', '', '', 1, '2021-04-02 20:11:07', '2021-04-02 20:18:49', 'don-vi-tinh', 1, 1, 9, '<i class="fa fa-flask menu-icon"></i>'),
-	(1004, 'Xem danh sách đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@danhSachDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@danhSachDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-02 20:17:18', 'danh-sach-don-vi-tinh', 1, 2, 1000, NULL),
-	(1005, 'Thêm đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@themDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@themDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-02 20:17:36', 'them-don-vi-tinh', 1, 2, 1000, NULL),
-	(1006, 'Load thông tin đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinhSingle', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinhSingle', '', '', 1003, '2021-04-02 20:11:07', '2021-04-02 20:17:53', 'don-vi-tinh-single', 1, 2, 1000, NULL),
-	(1007, 'Cập nhật đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@capNhatDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@capNhatDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-02 20:18:09', 'cap-nhat-don-vi-tinh', 1, 2, 1000, NULL),
-	(1008, 'Xóa đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@xoaDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@xoaDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-02 20:18:26', 'xoa-don-vi-tinh', 1, 2, 1000, NULL);
+	(973, 'Thống kê xuất nhập tồn', 'GET | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@thongKeXuatNhapTon', 'GET', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@thongKeXuatNhapTon', '', '', 972, '2021-03-21 15:06:39', '2021-04-05 09:29:25', 'thong-ke-xuat-nhap-ton', 1, 1, 1000, NULL),
+	(974, 'Danh sách thống kê xuất nhập tồn', 'POST | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@danhSachThongKeXuatNhapTon', 'POST', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@danhSachThongKeXuatNhapTon', '', '', 973, '2021-03-21 15:06:39', '2021-04-05 09:29:25', 'danh-sach-thong-ke-xuat-nhap-ton', 1, 2, 1000, NULL),
+	(975, 'Dashboard', 'GET | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@dashboard', 'GET', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@dashboard', '', '', 972, '2021-03-22 08:27:09', '2021-04-05 09:29:25', 'dashboard', 1, 1, 1, NULL),
+	(978, 'Import phiếu nhập bằng Excel', 'POST | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@importPhieuNhap', 'POST', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@importPhieuNhap', '', '', 935, '2021-03-23 15:17:37', '2021-04-05 09:29:25', 'import-phieu-nhap', 1, 2, 1000, NULL),
+	(979, 'Import phiếu xuất kho', 'POST | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@importPhieuXuat', 'POST', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@importPhieuXuat', '', '', 959, '2021-03-24 08:54:34', '2021-04-05 09:29:25', 'import-phieu-xuat', 1, 2, 1000, NULL),
+	(980, 'Xuất thống kê', 'GET | App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@exportThongKe', 'GET', 'App\\Modules\\ThongKe\\Controllers\\ThongKeXuatNhapTonController@exportThongKe', '', '', 972, '2021-03-27 06:02:58', '2021-04-05 09:29:25', 'export-thong-ke', 1, 2, 1000, NULL),
+	(981, 'Export phiếu xuất', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@exportPhieuXuat', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@exportPhieuXuat', '', '', 959, '2021-03-28 13:02:01', '2021-04-05 09:29:25', 'export-phieu-xuat', 1, 2, 1000, NULL),
+	(982, 'Export phiếu nhập', 'GET | App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@exportPhieuNhap', 'GET', 'App\\Modules\\PhieuNhap\\Controllers\\PhieuNhapController@exportPhieuNhap', '', '', 935, '2021-03-28 13:13:04', '2021-04-05 09:29:25', 'export-phieu-nhap', 1, 2, 1000, NULL),
+	(983, 'Import sản phẩm', 'POST | App\\Modules\\SanPham\\Controllers\\SanPhamController@importSanPham', 'POST', 'App\\Modules\\SanPham\\Controllers\\SanPhamController@importSanPham', '', '', 917, '2021-03-28 13:39:10', '2021-04-05 09:29:25', 'import-san-pham', 1, 2, 1000, NULL),
+	(984, 'Import khách hàng', 'POST | App\\Modules\\KhachHang\\Controllers\\KhachHangController@importKhachHang', 'POST', 'App\\Modules\\KhachHang\\Controllers\\KhachHangController@importKhachHang', '', '', 929, '2021-03-28 13:57:40', '2021-04-05 09:29:25', 'import-khach-hang', 1, 2, 1000, NULL),
+	(985, 'Import nhà cung cấp', 'POST | App\\Modules\\DoiTac\\Controllers\\DoiTacController@importDoiTac', 'POST', 'App\\Modules\\DoiTac\\Controllers\\DoiTacController@importDoiTac', '', '', 923, '2021-03-28 14:07:34', '2021-04-05 09:29:25', 'import-doi-tac', 1, 2, 1000, NULL),
+	(986, 'In phiếu xuất kho', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuXuat', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuXuat', '', '', 959, '2021-03-29 16:03:35', '2021-04-05 09:29:25', 'in-phieu-xuat', 1, 2, 1000, NULL),
+	(987, 'In phiếu giao hàng', 'GET | App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuGiaoHang', 'GET', 'App\\Modules\\PhieuXuat\\Controllers\\PhieuXuatController@inPhieuGiaoHang', '', '', 959, '2021-03-29 16:03:35', '2021-04-05 09:29:25', 'in-phieu-giao-hang', 1, 2, 1000, NULL),
+	(988, 'Công nợ', 'GET | App\\Modules\\CongNo\\Controllers\\CongNoController@congNo', 'GET', 'App\\Modules\\CongNo\\Controllers\\CongNoController@congNo', '', '', 1, '2021-04-01 08:12:37', '2021-04-05 09:29:25', 'cong-no', 1, 1, 5, '<i class="fa fa-briefcase menu-icon"></i>'),
+	(989, 'Xem danh sách công nợ', 'POST | App\\Modules\\CongNo\\Controllers\\CongNoController@danhSachCongNo', 'POST', 'App\\Modules\\CongNo\\Controllers\\CongNoController@danhSachCongNo', '', '', 988, '2021-04-01 08:12:37', '2021-04-05 09:29:25', 'danh-sach-cong-no', 1, 2, 1000, NULL),
+	(990, 'Load thông tin công nợ', 'POST | App\\Modules\\CongNo\\Controllers\\CongNoController@congNoSingle', 'POST', 'App\\Modules\\CongNo\\Controllers\\CongNoController@congNoSingle', '', '', 988, '2021-04-01 08:12:37', '2021-04-05 09:29:25', 'cong-no-single', 1, 2, 1000, NULL),
+	(997, 'Lập phiếu chi', 'GET | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChi', 'GET', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChi', '', '', 1009, '2021-04-01 15:32:51', '2021-04-05 09:29:25', 'phieu-chi', 1, 1, 6, '<i class="fa fa-external-link-square menu-icon"></i>'),
+	(998, 'Xem danh sách phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@danhSachPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@danhSachPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-05 09:29:25', 'danh-sach-phieu-chi', 1, 2, 6, NULL),
+	(999, 'Thêm phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@themPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@themPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-05 09:29:25', 'them-phieu-chi', 1, 2, 1000, NULL),
+	(1000, 'Load phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChiSingle', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChiSingle', '', '', 997, '2021-04-01 15:32:51', '2021-04-05 09:29:25', 'phieu-chi-single', 1, 2, 1000, NULL),
+	(1001, 'Cập nhật phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@capNhatPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@capNhatPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-05 09:29:25', 'cap-nhat-phieu-chi', 1, 2, 1000, NULL),
+	(1002, 'Xóa phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@xoaPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@xoaPhieuChi', '', '', 997, '2021-04-01 15:32:51', '2021-04-05 09:29:25', 'xoa-phieu-chi', 1, 2, 1000, NULL),
+	(1003, 'Đơn vị tính', 'GET | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinh', 'GET', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinh', '', '', 1, '2021-04-02 20:11:07', '2021-04-05 09:29:25', 'don-vi-tinh', 1, 1, 9, '<i class="fa fa-flask menu-icon"></i>'),
+	(1004, 'Xem danh sách đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@danhSachDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@danhSachDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-05 09:29:25', 'danh-sach-don-vi-tinh', 1, 2, 1000, NULL),
+	(1005, 'Thêm đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@themDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@themDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-05 09:29:25', 'them-don-vi-tinh', 1, 2, 1000, NULL),
+	(1006, 'Load thông tin đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinhSingle', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@donViTinhSingle', '', '', 1003, '2021-04-02 20:11:07', '2021-04-05 09:29:25', 'don-vi-tinh-single', 1, 2, 1000, NULL),
+	(1007, 'Cập nhật đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@capNhatDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@capNhatDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-05 09:29:25', 'cap-nhat-don-vi-tinh', 1, 2, 1000, NULL),
+	(1008, 'Xóa đơn vị tính', 'POST | App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@xoaDonViTinh', 'POST', 'App\\Modules\\DonViTinh\\Controllers\\DonViTinhController@xoaDonViTinh', '', '', 1003, '2021-04-02 20:11:07', '2021-04-05 09:29:25', 'xoa-don-vi-tinh', 1, 2, 1000, NULL),
+	(1009, 'Phiếu chi', NULL, 'GET', NULL, NULL, NULL, 1, '2021-04-05 08:54:38', '2021-04-05 08:56:56', NULL, 1, 1, 6, '<i class="fa fa-external-link-square menu-icon"></i>'),
+	(1013, 'Duyệt phiếu chi', 'GET | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChiChoDuyet', 'GET', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@phieuChiChoDuyet', '', '', 1009, '2021-04-05 09:27:59', '2021-04-05 09:30:18', 'phieu-chi-cho-duyet', 1, 1, 1000, NULL),
+	(1014, 'Danh sách phiếu chi chờ duyệt', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@danhSachPhieuChiChoDuyet', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@danhSachPhieuChiChoDuyet', '', '', 1013, '2021-04-05 09:29:25', '2021-04-05 09:29:51', 'danh-sach-phieu-chi-cho-duyet', 1, 2, 1000, NULL),
+	(1015, 'Duyệt phiếu chi', 'POST | App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@duyetPhieuChi', 'POST', 'App\\Modules\\PhieuChi\\Controllers\\PhieuChiController@duyetPhieuChi', '', '', 1013, '2021-04-05 09:29:25', '2021-04-05 09:30:06', 'duyet-phieu-chi', 1, 2, 1000, NULL);
 /*!40000 ALTER TABLE `admin_resource` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.admin_role
@@ -187,9 +191,9 @@ CREATE TABLE IF NOT EXISTS `admin_rule` (
   KEY `admin_rule_resource_id_foreign` (`resource_id`),
   CONSTRAINT `admin_rule_resource_id_foreign` FOREIGN KEY (`resource_id`) REFERENCES `admin_resource` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `admin_rule_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `admin_role` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1002 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1034 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table alcomputer.admin_rule: ~249 rows (approximately)
+-- Dumping data for table alcomputer.admin_rule: ~278 rows (approximately)
 /*!40000 ALTER TABLE `admin_rule` DISABLE KEYS */;
 INSERT INTO `admin_rule` (`id`, `role_id`, `resource_id`, `created_at`, `updated_at`) VALUES
 	(508, 1, 1, '2021-03-21 15:43:58', '2021-03-21 15:43:58'),
@@ -229,12 +233,6 @@ INSERT INTO `admin_rule` (`id`, `role_id`, `resource_id`, `created_at`, `updated
 	(722, 1, 988, '2021-04-02 19:47:41', '2021-04-02 19:47:41'),
 	(723, 1, 989, '2021-04-02 19:47:41', '2021-04-02 19:47:41'),
 	(724, 1, 990, '2021-04-02 19:47:41', '2021-04-02 19:47:41'),
-	(725, 1, 997, '2021-04-02 19:47:42', '2021-04-02 19:47:42'),
-	(726, 1, 998, '2021-04-02 19:47:42', '2021-04-02 19:47:42'),
-	(727, 1, 999, '2021-04-02 19:47:42', '2021-04-02 19:47:42'),
-	(728, 1, 1000, '2021-04-02 19:47:42', '2021-04-02 19:47:42'),
-	(729, 1, 1001, '2021-04-02 19:47:42', '2021-04-02 19:47:42'),
-	(730, 1, 1002, '2021-04-02 19:47:42', '2021-04-02 19:47:42'),
 	(752, 1, 917, '2021-04-02 19:47:54', '2021-04-02 19:47:54'),
 	(753, 1, 918, '2021-04-02 19:47:54', '2021-04-02 19:47:54'),
 	(754, 1, 919, '2021-04-02 19:47:54', '2021-04-02 19:47:54'),
@@ -457,7 +455,28 @@ INSERT INTO `admin_rule` (`id`, `role_id`, `resource_id`, `created_at`, `updated
 	(998, 10, 906, '2021-04-02 20:20:45', '2021-04-02 20:20:45'),
 	(999, 10, 907, '2021-04-02 20:20:45', '2021-04-02 20:20:45'),
 	(1000, 10, 908, '2021-04-02 20:20:45', '2021-04-02 20:20:45'),
-	(1001, 10, 909, '2021-04-02 20:20:45', '2021-04-02 20:20:45');
+	(1001, 10, 909, '2021-04-02 20:20:45', '2021-04-02 20:20:45'),
+	(1002, 10, 1009, '2021-04-05 08:54:58', '2021-04-05 08:54:58'),
+	(1014, 1, 1009, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1015, 1, 997, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1016, 1, 998, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1017, 1, 999, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1018, 1, 1000, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1019, 1, 1001, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1020, 1, 1002, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1021, 1, 1013, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1022, 1, 1014, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1023, 1, 1015, '2021-04-05 09:30:29', '2021-04-05 09:30:29'),
+	(1024, 9, 1009, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1025, 9, 997, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1026, 9, 998, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1027, 9, 999, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1028, 9, 1000, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1029, 9, 1001, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1030, 9, 1002, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1031, 9, 1013, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1032, 9, 1014, '2021-04-05 10:35:30', '2021-04-05 10:35:30'),
+	(1033, 9, 1015, '2021-04-05 10:35:30', '2021-04-05 10:35:30');
 /*!40000 ALTER TABLE `admin_rule` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.chi_tiet_phieu_nhap
@@ -477,10 +496,25 @@ CREATE TABLE IF NOT EXISTS `chi_tiet_phieu_nhap` (
   KEY `FK_chi_tiet_phieu_nhap_san_pham` (`id_san_pham`),
   CONSTRAINT `FK_chi_tiet_phieu_nhap_phieu_nhap` FOREIGN KEY (`id_phieu_nhap`) REFERENCES `phieu_nhap` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_chi_tiet_phieu_nhap_san_pham` FOREIGN KEY (`id_san_pham`) REFERENCES `san_pham` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=399 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=413 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.chi_tiet_phieu_nhap: ~0 rows (approximately)
+-- Dumping data for table alcomputer.chi_tiet_phieu_nhap: ~14 rows (approximately)
 /*!40000 ALTER TABLE `chi_tiet_phieu_nhap` DISABLE KEYS */;
+INSERT INTO `chi_tiet_phieu_nhap` (`id`, `id_phieu_nhap`, `id_san_pham`, `gia_nhap`, `so_luong`, `so_luong_da_xuat`, `giam_gia`, `thanh_tien`, `ghi_chu`, `state`) VALUES
+	(399, 355, 272, 10000, 1000, 11, 0, 10000000, '', 0),
+	(400, 356, 272, 10000, 10, 0, 0, 100000, '', 0),
+	(401, 357, 272, 10000, 10, 0, 0, 100000, '', 0),
+	(402, 358, 272, 10000, 1000, 0, 0, 10000000, '', 0),
+	(403, 359, 272, 100000, 10, 0, 0, 1000000, '', 0),
+	(404, 360, 272, 10000, 10, 0, 0, 100000, '', 0),
+	(405, 361, 272, 1000, 10, 0, 0, 10000, '', 0),
+	(406, 361, 273, 1000, 1000, 0, 0, 1000000, '', 0),
+	(407, 362, 356, 10000, 100, 2, 0, 1000000, '', 0),
+	(408, 363, 356, 10, 10, 0, 0, 100, '', 0),
+	(409, 364, 356, 10000, 100, 0, 0, 1000000, '', 0),
+	(410, 364, 357, 10000, 100, 1, 0, 1000000, '', 0),
+	(411, 365, 356, 10000, 1, 0, 0, 10000, '', 0),
+	(412, 365, 359, 10000, 1, 0, 0, 10000, '', 0);
 /*!40000 ALTER TABLE `chi_tiet_phieu_nhap` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.chi_tiet_phieu_xuat
@@ -503,10 +537,19 @@ CREATE TABLE IF NOT EXISTS `chi_tiet_phieu_xuat` (
   CONSTRAINT `FK_chi_tiet_phieu_xuat_chi_tiet_phieu_nhap` FOREIGN KEY (`id_chi_tiet_phieu_nhap`) REFERENCES `chi_tiet_phieu_nhap` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_chi_tiet_phieu_xuat_phieu_xuat` FOREIGN KEY (`id_phieu_xuat`) REFERENCES `phieu_xuat` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `FK_chi_tiet_phieu_xuat_san_pham` FOREIGN KEY (`id_san_pham`) REFERENCES `san_pham` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=381 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.chi_tiet_phieu_xuat: ~0 rows (approximately)
+-- Dumping data for table alcomputer.chi_tiet_phieu_xuat: ~8 rows (approximately)
 /*!40000 ALTER TABLE `chi_tiet_phieu_xuat` DISABLE KEYS */;
+INSERT INTO `chi_tiet_phieu_xuat` (`id`, `id_phieu_xuat`, `id_chi_tiet_phieu_nhap`, `id_san_pham`, `gia_xuat`, `gia_von`, `so_luong`, `giam_gia`, `thanh_tien`, `ghi_chu`, `state`) VALUES
+	(381, 354, 399, 272, 280000, 10000, 1, 0, 280000, '', 0),
+	(382, 355, 399, 272, 280000, 10000, 2, 0, 560000, '', 0),
+	(383, 356, 399, 272, 280000, 10000, 2, 0, 560000, '', 0),
+	(384, 357, 399, 272, 280000, 10000, 2, 0, 560000, '', 0),
+	(385, 358, 399, 272, 280000, 10000, 2, 0, 560000, '', 0),
+	(386, 359, 399, 272, 280000, 10000, 2, 0, 560000, '', 0),
+	(387, 360, 407, 356, 849999, 10000, 2, 0, 1700000, '', 0),
+	(388, 360, 410, 357, 1500000, 10000, 1, 0, 1500000, '', 0);
 /*!40000 ALTER TABLE `chi_tiet_phieu_xuat` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.dm_cap_don_vi
@@ -711,12 +754,12 @@ CREATE TABLE IF NOT EXISTS `doi_tac` (
   `state` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ma_doi_tac` (`ma_doi_tac`)
-) ENGINE=InnoDB AUTO_INCREMENT=311 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=316 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.doi_tac: ~101 rows (approximately)
+-- Dumping data for table alcomputer.doi_tac: ~102 rows (approximately)
 /*!40000 ALTER TABLE `doi_tac` DISABLE KEYS */;
 INSERT INTO `doi_tac` (`id`, `ma_doi_tac`, `ten_doi_tac`, `ten_cong_ty`, `gioi_tinh`, `dia_chi`, `di_dong`, `co_dinh`, `email`, `bien_so`, `fax`, `hinh_anh`, `state`) VALUES
-	(210, 'KH001', 'Phan Văn Thanh 001', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138484', '0941138484', '0941138484', '0941138484', '0941138484', NULL, 1),
+	(210, 'KH001', 'Phan Văn Thanh 001 - 011- 001 -001-001', NULL, 1, 'Cầu Kè, Trà Vinh', '0941138484', '0941138484', '0941138484', '0941138484', '0941138484', NULL, 1),
 	(211, 'KH002', 'Phan Văn Thanh 002', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138485', '0941138485', '0941138485', '0941138485', '0941138485', NULL, 1),
 	(212, 'KH003', 'Phan Văn Thanh 003', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138486', '0941138486', '0941138486', '0941138486', '0941138486', NULL, 1),
 	(213, 'KH004', 'Phan Văn Thanh 004', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138487', '0941138487', '0941138487', '0941138487', '0941138487', NULL, 1),
@@ -816,7 +859,12 @@ INSERT INTO `doi_tac` (`id`, `ma_doi_tac`, `ten_doi_tac`, `ten_cong_ty`, `gioi_t
 	(307, 'KH098', 'Phan Văn Thanh 098', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138581', '0941138581', '0941138581', '0941138581', '0941138581', NULL, 1),
 	(308, 'KH099', 'Phan Văn Thanh 099', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138582', '0941138582', '0941138582', '0941138582', '0941138582', NULL, 1),
 	(309, 'KH100', 'Phan Văn Thanh 100', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138583', '0941138583', '0941138583', '0941138583', '0941138583', NULL, 1),
-	(310, 'KH101', 'Phan Văn Thanh 101', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138584', '0941138584', '0941138584', '0941138584', '0941138584', NULL, 1);
+	(310, 'KH101', 'Phan Văn Thanh 101', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138584', '0941138584', '0941138584', '0941138584', '0941138584', NULL, 1),
+	(311, 'DT0311', 'Phan Văn Tèo', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(312, 'DT0312', 'Kim Ngọc Tuyền', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(313, 'DT0313', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(314, 'DT0314', 'sdfa', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(315, 'DT0315', 'sdfasdf', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 /*!40000 ALTER TABLE `doi_tac` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.don_vi
@@ -880,7 +928,7 @@ CREATE TABLE IF NOT EXISTS `don_vi_tinh` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.don_vi_tinh: ~11 rows (approximately)
+-- Dumping data for table alcomputer.don_vi_tinh: ~10 rows (approximately)
 /*!40000 ALTER TABLE `don_vi_tinh` DISABLE KEYS */;
 INSERT INTO `don_vi_tinh` (`id`, `ten_don_vi_tinh`, `state`) VALUES
 	(1, 'Bộ', 1),
@@ -913,12 +961,12 @@ CREATE TABLE IF NOT EXISTS `khach_hang` (
   `state` int(11) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `ma_khach_hang` (`ma_khach_hang`)
-) ENGINE=InnoDB AUTO_INCREMENT=309 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.khach_hang: ~101 rows (approximately)
+-- Dumping data for table alcomputer.khach_hang: ~102 rows (approximately)
 /*!40000 ALTER TABLE `khach_hang` DISABLE KEYS */;
 INSERT INTO `khach_hang` (`id`, `ma_khach_hang`, `ten_khach_hang`, `ten_cong_ty`, `gioi_tinh`, `dia_chi`, `di_dong`, `co_dinh`, `bien_so`, `email`, `fax`, `hinh_anh`, `state`) VALUES
-	(208, 'KH001', 'Phan Văn Thanh 001', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138484', '0941138484', '0941138484', '0941138484', '0941138484', NULL, 1),
+	(208, 'KH001', 'Phan Văn Thanh 001 - 001 -001-001', NULL, 1, 'Cầu Kè, Trà Vinh', '0941138484', '0941138484', '0941138484', '0941138484', '0941138484', NULL, 1),
 	(209, 'KH002', 'Phan Văn Thanh 002', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138485', '0941138485', '0941138485', '0941138485', '0941138485', NULL, 1),
 	(210, 'KH003', 'Phan Văn Thanh 003', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138486', '0941138486', '0941138486', '0941138486', '0941138486', NULL, 1),
 	(211, 'KH004', 'Phan Văn Thanh 004', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138487', '0941138487', '0941138487', '0941138487', '0941138487', NULL, 1),
@@ -1018,7 +1066,13 @@ INSERT INTO `khach_hang` (`id`, `ma_khach_hang`, `ten_khach_hang`, `ten_cong_ty`
 	(305, 'KH098', 'Phan Văn Thanh 098', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138581', '0941138581', '0941138581', '0941138581', '0941138581', NULL, 1),
 	(306, 'KH099', 'Phan Văn Thanh 099', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138582', '0941138582', '0941138582', '0941138582', '0941138582', NULL, 1),
 	(307, 'KH100', 'Phan Văn Thanh 100', NULL, 0, 'Trà  Cú, Trà Vinh', '0941138583', '0941138583', '0941138583', '0941138583', '0941138583', NULL, 1),
-	(308, 'KH101', 'Phan Văn Thanh 101', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138584', '0941138584', '0941138584', '0941138584', '0941138584', NULL, 1);
+	(308, 'KH101', 'Phan Văn Thanh 101', NULL, 1, 'Trà  Cú, Trà Vinh', '0941138584', '0941138584', '0941138584', '0941138584', '0941138584', NULL, 1),
+	(309, 'KH0309', 'Phan Văn Thanh', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(310, 'KH0310', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(311, 'KH0311', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(312, 'KH0312', 'SDFASDFAS', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(313, 'KH0313', 'SDFAS', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1),
+	(314, 'KH0314', 'aaaaa', NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 /*!40000 ALTER TABLE `khach_hang` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.password_resets
@@ -1049,10 +1103,12 @@ CREATE TABLE IF NOT EXISTS `phieu_chi` (
   PRIMARY KEY (`id`),
   KEY `FK_chi_tieu_users` (`id_user`),
   CONSTRAINT `FK_chi_tieu_users` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- Dumping data for table alcomputer.phieu_chi: ~0 rows (approximately)
 /*!40000 ALTER TABLE `phieu_chi` DISABLE KEYS */;
+INSERT INTO `phieu_chi` (`id`, `ma_phieu_chi`, `id_user`, `file`, `noi_dung`, `tong_chi`, `ghi_chu`, `da_duyet`, `ngay_chi`) VALUES
+	(6, 'PC040421-0001', 1, NULL, 'sdfasdfa', 10000, NULL, 1, '2021-04-05 10:32:42');
 /*!40000 ALTER TABLE `phieu_chi` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.phieu_nhap
@@ -1069,10 +1125,22 @@ CREATE TABLE IF NOT EXISTS `phieu_nhap` (
   PRIMARY KEY (`id`),
   KEY `FK_phieu_nhap_doi_tac` (`id_doi_tac`),
   CONSTRAINT `FK_phieu_nhap_doi_tac` FOREIGN KEY (`id_doi_tac`) REFERENCES `doi_tac` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=355 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=366 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.phieu_nhap: ~0 rows (approximately)
+-- Dumping data for table alcomputer.phieu_nhap: ~11 rows (approximately)
 /*!40000 ALTER TABLE `phieu_nhap` DISABLE KEYS */;
+INSERT INTO `phieu_nhap` (`id`, `id_doi_tac`, `ma_phieu_nhap`, `vat`, `chiet_khau`, `da_thanh_toan`, `ngay_nhap`, `ghi_chu`, `state`) VALUES
+	(355, 210, 'PN040421-0001', 0, 0, 0, '2021-04-04 06:00:33', NULL, 0),
+	(356, 210, 'PN040421-0002', 0, 0, 0, '2021-04-04 06:07:41', NULL, 0),
+	(357, 210, 'PN040421-0003', 0, 0, 0, '2021-04-04 06:09:16', NULL, 0),
+	(358, 210, 'PN040421-0004', 0, 0, 0, '2021-04-04 06:11:58', NULL, 0),
+	(359, 210, 'PN040421-0005', 0, 0, 0, '2021-04-04 06:18:52', NULL, 0),
+	(360, 311, 'PN040421-0006', 0, 0, 0, '2021-04-04 07:20:38', NULL, 0),
+	(361, 312, 'PN040421-0007', 0, 0, 0, '2021-04-04 07:24:37', NULL, 0),
+	(362, 313, 'PN040421-0008', 0, 0, 0, '2021-04-04 07:25:40', NULL, 0),
+	(363, 314, 'PN050421-0001', 0, 0, 0, '2021-04-05 14:46:46', '222fsdfa', 0),
+	(364, 210, 'PN050421-0002', 0, 0, 0, '2021-04-05 14:48:31', 'Ghi chú chơi 1', 0),
+	(365, 315, 'PN050421-0003', 0, 0, 0, '2021-04-05 16:13:26', 'test', 0);
 /*!40000 ALTER TABLE `phieu_nhap` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.phieu_xuat
@@ -1089,10 +1157,18 @@ CREATE TABLE IF NOT EXISTS `phieu_xuat` (
   PRIMARY KEY (`id`),
   KEY `FK_phieu_xuat_khach_hang` (`id_khach_hang`),
   CONSTRAINT `FK_phieu_xuat_khach_hang` FOREIGN KEY (`id_khach_hang`) REFERENCES `khach_hang` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=354 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=361 DEFAULT CHARSET=utf8;
 
--- Dumping data for table alcomputer.phieu_xuat: ~0 rows (approximately)
+-- Dumping data for table alcomputer.phieu_xuat: ~7 rows (approximately)
 /*!40000 ALTER TABLE `phieu_xuat` DISABLE KEYS */;
+INSERT INTO `phieu_xuat` (`id`, `id_khach_hang`, `ma_phieu_xuat`, `vat`, `chiet_khau`, `da_thanh_toan`, `ngay_xuat`, `ghi_chu`, `state`) VALUES
+	(354, 208, 'PX040421-0001', 0, 0, 0, '2021-04-04 06:07:18', NULL, 0),
+	(355, 208, 'PX040421-0002', 0, 0, 0, '2021-04-04 06:12:31', NULL, 0),
+	(356, 208, 'PX040421-0003', 0, 0, 0, '2021-04-04 06:22:07', NULL, 0),
+	(357, 309, 'PX040421-0004', 0, 0, 0, '2021-04-04 06:36:52', NULL, 0),
+	(358, 310, 'PX040421-0005', 0, 0, 560000, '2021-04-04 06:37:32', NULL, 0),
+	(359, 313, 'PX040421-0006', 0, 0, 560000, '2021-04-04 06:38:44', NULL, 0),
+	(360, 314, 'PX050421-0001', 0, 0, 0, '2021-04-05 16:14:03', 'Ghi chú nhe', 0);
 /*!40000 ALTER TABLE `phieu_xuat` ENABLE KEYS */;
 
 -- Dumping structure for table alcomputer.san_pham
@@ -1115,7 +1191,7 @@ CREATE TABLE IF NOT EXISTS `san_pham` (
 -- Dumping data for table alcomputer.san_pham: ~101 rows (approximately)
 /*!40000 ALTER TABLE `san_pham` DISABLE KEYS */;
 INSERT INTO `san_pham` (`id`, `id_don_vi_tinh`, `ten_san_pham`, `ma_san_pham`, `mo_ta_san_pham`, `hinh_anh`, `gia_nhap_goi_y`, `gia_xuat_goi_y`, `state`) VALUES
-	(272, 8, 'ADAPTER DELL 3340', 'SP49', NULL, 'logo_16174170050.jpg;', 280000, 280000, 1),
+	(272, 8, 'ADAPTER DELL 3340 - 001-002', 'SP49', NULL, 'logo_16174170050.jpg;', 280000, 280000, 1),
 	(273, 8, 'ADAPTER LCD SAMSUNG 14V', 'SP108', NULL, NULL, 350000, 350000, 1),
 	(274, 8, 'ASUS H61M ( CTY/3N)', 'SP20', NULL, NULL, 1700000, 1700000, 1),
 	(275, 8, 'ASUS H81M (CTY/3N)', 'SP19', NULL, NULL, 1700000, 1700000, 1),
@@ -1240,7 +1316,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 -- Dumping data for table alcomputer.users: ~3 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `password`, `hinh_anh`, `remember_token`, `created_at`, `updated_at`, `di_dong`, `state`) VALUES
-	(1, 1, 'Quản trị hệ thống', 'admin', '$2y$10$VZI0siYq7lRPvqt8e.QbXOWDBelj91YwJoLsEKx4GxbWH5XQb87xO', 'al_16156462990.jpg;', 'wnCwGW6IOIS8ETJCvg3SMquGVJtxG2mBedG9MQvcsPwvXcHz7alYCJPZVAEX', '2021-03-12 20:57:11', '2021-04-02 20:22:48', '0941138484', 1),
+	(1, 1, 'Quản trị hệ thống', 'admin', '$2y$10$VZI0siYq7lRPvqt8e.QbXOWDBelj91YwJoLsEKx4GxbWH5XQb87xO', 'al_16156462990.jpg;', 'pwD5JrezmXhWFBbYOmtYyGU0LnzXIREQ9X6IeTxihSWV5V3N6nEOH9bvptHA', '2021-03-12 20:57:11', '2021-04-05 10:29:16', '0941138484', 1),
 	(2, 10, 'Giám đốc. Thạch Thất Tùng', 'thachthattung', '$2y$10$GrxytSfk/vWSl.inRWtfq.HNZ2rk6afvyPmjV6FT1li2m5ikaOpZu', 'al_16156466170.jpg;', NULL, '2021-03-13 21:43:37', '2021-04-02 20:21:58', '0941946464', 1),
 	(3, 9, 'Nhân viên', 'nhanvien', '$2y$10$GI0MnyNj0yytX2lJCa0/MecdopxaogmgkVN2odxH2OvxTSupEBKS6', 'al_16156462990.jpg;', NULL, '2021-03-13 10:24:50', '2021-04-02 20:22:01', '0941138484', 1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
