@@ -28,13 +28,17 @@ class PhieuNhap extends Authenticatable
     }
 
     public static function layDanhSachPhieuNhap(){
-        $data=DB::select('select pn.id, pn.ma_phieu_nhap, pn.id_doi_tac, dt.ma_doi_tac, dt.ten_doi_tac, dt.dia_chi, dt.di_dong, dt.email, pn.ghi_chu,
+        $data=DB::select('select pn.id, pn.ma_phieu_nhap, DATE_FORMAT(pn.ngay_nhap,"%d/%m/%Y") AS ngay_nhap, DATE_FORMAT(pn.ngay_nhap,"%m%Y") AS thang_nhap, pn.id_doi_tac, dt.ma_doi_tac, dt.ten_doi_tac, dt.dia_chi, dt.di_dong, dt.email, pn.ghi_chu,
         sum(ctpn.thanh_tien) as thanh_tien, (sum(ctpn.thanh_tien)-sum(ctpn.giam_gia)) as tong_tien from phieu_nhap pn
         left join doi_tac dt on pn.id_doi_tac=dt.id
         left join chi_tiet_phieu_nhap ctpn on ctpn.id_phieu_nhap=pn.id
-        group by pn.id, pn.ma_phieu_nhap, pn.id_doi_tac, dt.ma_doi_tac, dt.ten_doi_tac, dt.dia_chi, dt.di_dong, dt.email, pn.ghi_chu');
+        group by pn.id, pn.ma_phieu_nhap, DATE_FORMAT(pn.ngay_nhap,"%d/%m/%Y"), DATE_FORMAT(pn.ngay_nhap,"%m%Y"), pn.id_doi_tac, dt.ma_doi_tac, dt.ten_doi_tac, dt.dia_chi, dt.di_dong, dt.email, pn.ghi_chu');
         $data = collect($data)->map(function($x){ return (array) $x; })->toArray(); 
-        return $data;
+        $result=array();
+        foreach ($data as $key => $value) {
+            $result[$value['thang_nhap']][]=$value;
+        }
+        return $result;
     }
 
 

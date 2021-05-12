@@ -25,6 +25,11 @@ Route::group(
             'uses' => 'PhieuXuatController@phieuXuatSingle'
         ]);
 
+        Route::post('xem-phieu-xuat', [
+            'as' => 'xem-phieu-xuat',
+            'uses' => 'PhieuXuatController@xemPhieuXuat'
+        ]);
+
         Route::post('them-phieu-xuat', [
             'as' => 'them-phieu-xuat',
             'uses' => 'PhieuXuatController@themPhieuXuat'

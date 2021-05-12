@@ -51,6 +51,12 @@ class PhieuXuatController extends Controller{
     public function themChiTietPhieuXuat(Request $request){
         if(RequestAjax::ajax()){ // Kiểm tra gửi đường ajax
             $data=RequestAjax::all(); // Lấy tất cả dữ liệu
+            $data['da_thanh_toan']=str_replace(',','',$data['da_thanh_toan']);
+            $data['gia_xuat']=str_replace(',','',$data['gia_xuat']);
+            $data['so_luong']=str_replace(',','',$data['so_luong']);
+            $data['thanh_tien']=str_replace(',','',$data['thanh_tien']);
+            $data['giam_gia']=str_replace(',','',$data['giam_gia']);
+            $data['con_lai']=str_replace(',','',$data['con_lai']);
             $idPhieuXuat=0; $idSanPham=0;
 
 
@@ -95,7 +101,7 @@ class PhieuXuatController extends Controller{
                 /*if(isset($data['da_thanh_toan'])){
                     $dataPhieuXuat['da_thanh_toan']=1;
                 }*/
-                $dataPhieuXuat['da_thanh_toan']=$data['da_thanh_toan'];
+                $dataPhieuXuat['da_thanh_toan']=str_replace(',','',$data['da_thanh_toan']);
                 $dataPhieuXuat['ngay_xuat']=$data['ngay_xuat'];
                 $dataPhieuXuat['ghi_chu']=$data['ghi_chu'];
                 $phieuXuat=PhieuXuat::create($dataPhieuXuat);
@@ -215,6 +221,69 @@ class PhieuXuatController extends Controller{
         return array('error'=>"Không tìm thấy phương thức truyền dữ liệu"); // return dữ liệu về AJAX
     }
 
+    public function xemPhieuXuat(Request $request){
+        if(RequestAjax::ajax()){ // Kiểm tra gửi đường ajax
+            // Khai báo các dữ liệu bên form cần thiết
+            $error='';
+            $dataForm=RequestAjax::all(); $data=array();
+            // Kiểm tra dữ liệu không hợp lệ
+            $id=0; $error=''; $chiTietPhieuXuats=array(); $khachHang=array(); $phieuXuat=array(); $tongNoCu=0; $tongDaThanhToanNoCu=0; $tongConLaiNoCu=0;
+
+            if(!Auth::id()){
+                $error='Chưa đăng nhập vào hệ thống';
+                return view('PhieuXuat::xem-phieu-xuat', compact('id', 'error', 'chiTietPhieuXuats', 'khachHang', 'phieuXuat', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'));
+            }
+            if(!isset($request->id) || !is_numeric($request->id)){
+                $error='Không tìm thấy phiếu cần in';
+                return view('PhieuXuat::xem-phieu-xuat', compact('id', 'error', 'chiTietPhieuXuats', 'khachHang', 'phieuXuat', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'));
+            }
+            $id=$request->id;
+            
+
+            $phieuXuat=PhieuXuat::where('id','=',$id)->get()->toArray();
+            if(!$phieuXuat){            
+                return view('PhieuXuat::xem-phieu-xuat', compact('id', 'error', 'chiTietPhieuXuats', 'khachHang', 'phieuXuat', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'));
+            }else{
+                $phieuXuat=$phieuXuat[0];
+            }
+
+
+            // $chiTietPhieuXuats=ChiTietPhieuXuat::select('chi_tiet_phieu_xuat.id', 'chi_tiet_phieu_xuat.id_phieu_xuat', 'chi_tiet_phieu_xuat.id_san_pham', 'chi_tiet_phieu_xuat.gia_xuat', 'chi_tiet_phieu_xuat.so_luong', 'chi_tiet_phieu_xuat.giam_gia', 'chi_tiet_phieu_xuat.thanh_tien', 'chi_tiet_phieu_xuat.ghi_chu', 'don_vi_tinh.ten_don_vi_tinh', 'san_pham.ma_san_pham', 'san_pham.ten_san_pham')
+            // ->leftJoin('san_pham','chi_tiet_phieu_xuat.id_san_pham','=','san_pham.id')
+            // ->leftJoin('don_vi_tinh','san_pham.id_don_vi_tinh','=','don_vi_tinh.id')
+            // ->where('chi_tiet_phieu_xuat.id_phieu_xuat','=',$id)
+            // ->get()->toArray();
+            $chiTietPhieuXuats=PhieuXuat::layChiTietPhieuXuatTheoId($id);
+
+            $khachHang=PhieuXuat::select('khach_hang.ten_khach_hang', 'khach_hang.di_dong', 'khach_hang.dia_chi')
+            ->leftJoin('khach_hang','phieu_xuat.id_khach_hang','=','khach_hang.id')
+            ->where('phieu_xuat.id','=',$id)
+            ->get()->toArray();
+            if($khachHang){
+                $khachHang=$khachHang[0];
+            }
+
+
+            $thanhToan=DB::select("SELECT SUM(da_thanh_toan) AS no_cu_da_thanh_toan FROM phieu_xuat WHERE id_khach_hang=".$phieuXuat['id_khach_hang']." and id!=".$id);
+            $thanhToan = collect($thanhToan)->map(function($x){ return (array) $x; })->toArray(); 
+            if($thanhToan){
+                $tongDaThanhToanNoCu=$thanhToan[0]['no_cu_da_thanh_toan'];
+            }
+
+            $thanhToan=DB::select("SELECT SUM(ctpx.thanh_tien-ctpx.giam_gia) AS no_cu_thanh_tien  FROM phieu_xuat px
+                LEFT JOIN chi_tiet_phieu_xuat ctpx on px.id=ctpx.id_phieu_xuat
+                WHERE px.id_khach_hang=".$phieuXuat['id_khach_hang']." and px.id!=".$id);
+            $thanhToan = collect($thanhToan)->map(function($x){ return (array) $x; })->toArray(); 
+            if($thanhToan){
+                $tongNoCu=$thanhToan[0]['no_cu_thanh_tien'];
+            }
+            $tongConLaiNoCu=$tongNoCu-$tongDaThanhToanNoCu; 
+            $view=view('PhieuXuat::xem-phieu-xuat', compact('id', 'error', 'chiTietPhieuXuats', 'khachHang', 'phieuXuat', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'))->render(); // Trả dữ liệu ra view trước     
+            return response()->json(['html'=>$view, 'error'=>$error]); // return dữ liệu về AJAX sau
+        }
+        return array('error'=>"Không tìm thấy phương thức truyền dữ liệu"); // return dữ liệu về AJAX
+    }
+
     public function layThongTinKhachHangTheoTenVaMa(Request $request){
         if(RequestAjax::ajax()){ // Kiểm tra phương thức gửi dữ liệu là AJAX
             $dataForm=RequestAjax::all(); // Lấy tất cả dữ liệu đã gửi
@@ -301,7 +370,7 @@ class PhieuXuatController extends Controller{
                 /*if(isset($dataForm['da_thanh_toan'])){
                     $dataPhieuXuat['da_thanh_toan']=1;
                 }*/
-                $dataPhieuXuat['da_thanh_toan']=$dataForm['da_thanh_toan'];
+                $dataPhieuXuat['da_thanh_toan']=str_replace(',','',$dataForm['da_thanh_toan']);
                 $dataPhieuXuat['ngay_xuat']=$dataForm['ngay_xuat'];
                 $phieuXuat->update($dataPhieuXuat);
                 //return array("error"=>'');
@@ -368,11 +437,12 @@ class PhieuXuatController extends Controller{
         }
 
 
-        $chiTietPhieuXuats=ChiTietPhieuXuat::select('chi_tiet_phieu_xuat.id', 'chi_tiet_phieu_xuat.id_phieu_xuat', 'chi_tiet_phieu_xuat.id_san_pham', 'chi_tiet_phieu_xuat.gia_xuat', 'chi_tiet_phieu_xuat.so_luong', 'chi_tiet_phieu_xuat.giam_gia', 'chi_tiet_phieu_xuat.thanh_tien', 'chi_tiet_phieu_xuat.ghi_chu', 'don_vi_tinh.ten_don_vi_tinh', 'san_pham.ma_san_pham', 'san_pham.ten_san_pham')
-        ->leftJoin('san_pham','chi_tiet_phieu_xuat.id_san_pham','=','san_pham.id')
-        ->leftJoin('don_vi_tinh','san_pham.id_don_vi_tinh','=','don_vi_tinh.id')
-        ->where('chi_tiet_phieu_xuat.id_phieu_xuat','=',$id)
-        ->get()->toArray();
+        // $chiTietPhieuXuats=ChiTietPhieuXuat::select('chi_tiet_phieu_xuat.id', 'chi_tiet_phieu_xuat.id_phieu_xuat', 'chi_tiet_phieu_xuat.id_san_pham', 'chi_tiet_phieu_xuat.gia_xuat', 'chi_tiet_phieu_xuat.so_luong', 'chi_tiet_phieu_xuat.giam_gia', 'chi_tiet_phieu_xuat.thanh_tien', 'chi_tiet_phieu_xuat.ghi_chu', 'don_vi_tinh.ten_don_vi_tinh', 'san_pham.ma_san_pham', 'san_pham.ten_san_pham')
+        // ->leftJoin('san_pham','chi_tiet_phieu_xuat.id_san_pham','=','san_pham.id')
+        // ->leftJoin('don_vi_tinh','san_pham.id_don_vi_tinh','=','don_vi_tinh.id')
+        // ->where('chi_tiet_phieu_xuat.id_phieu_xuat','=',$id)
+        // ->get()->toArray();
+        $chiTietPhieuXuats=PhieuXuat::layChiTietPhieuXuatTheoId($id);
 
         $khachHang=PhieuXuat::select('khach_hang.ten_khach_hang', 'khach_hang.di_dong', 'khach_hang.dia_chi')
         ->leftJoin('khach_hang','phieu_xuat.id_khach_hang','=','khach_hang.id')
@@ -424,11 +494,12 @@ class PhieuXuatController extends Controller{
         }
 
 
-        $chiTietPhieuXuats=ChiTietPhieuXuat::select('chi_tiet_phieu_xuat.id', 'chi_tiet_phieu_xuat.id_phieu_xuat', 'chi_tiet_phieu_xuat.id_san_pham', 'chi_tiet_phieu_xuat.gia_xuat', 'chi_tiet_phieu_xuat.so_luong', 'chi_tiet_phieu_xuat.giam_gia', 'chi_tiet_phieu_xuat.thanh_tien', 'chi_tiet_phieu_xuat.ghi_chu', 'don_vi_tinh.ten_don_vi_tinh', 'san_pham.ma_san_pham', 'san_pham.ten_san_pham')
-        ->leftJoin('san_pham','chi_tiet_phieu_xuat.id_san_pham','=','san_pham.id')
-        ->leftJoin('don_vi_tinh','san_pham.id_don_vi_tinh','=','don_vi_tinh.id')
-        ->where('chi_tiet_phieu_xuat.id_phieu_xuat','=',$id)
-        ->get()->toArray();
+        // $chiTietPhieuXuats=ChiTietPhieuXuat::select('chi_tiet_phieu_xuat.id', 'chi_tiet_phieu_xuat.id_phieu_xuat', 'chi_tiet_phieu_xuat.id_san_pham', 'chi_tiet_phieu_xuat.gia_xuat', 'chi_tiet_phieu_xuat.so_luong', 'chi_tiet_phieu_xuat.giam_gia', 'chi_tiet_phieu_xuat.thanh_tien', 'chi_tiet_phieu_xuat.ghi_chu', 'don_vi_tinh.ten_don_vi_tinh', 'san_pham.ma_san_pham', 'san_pham.ten_san_pham')
+        // ->leftJoin('san_pham','chi_tiet_phieu_xuat.id_san_pham','=','san_pham.id')
+        // ->leftJoin('don_vi_tinh','san_pham.id_don_vi_tinh','=','don_vi_tinh.id')
+        // ->where('chi_tiet_phieu_xuat.id_phieu_xuat','=',$id)
+        // ->get()->toArray();
+        $chiTietPhieuXuats=PhieuXuat::layChiTietPhieuXuatTheoId($id);
 
         $khachHang=PhieuXuat::select('khach_hang.ten_khach_hang', 'khach_hang.di_dong', 'khach_hang.dia_chi')
         ->leftJoin('khach_hang','phieu_xuat.id_khach_hang','=','khach_hang.id')

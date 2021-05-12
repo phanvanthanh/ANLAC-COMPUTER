@@ -65,5 +65,10 @@ Route::group(
             'as' => 'import-phieu-nhap',
             'uses' => 'PhieuNhapController@importPhieuNhap'
         ]);
+
+        Route::post('xem-phieu-nhap', [
+            'as' => 'xem-phieu-nhap',
+            'uses' => 'PhieuNhapController@xemPhieuNhap'
+        ]);
     }
 );

@@ -26,15 +26,31 @@ class PhieuXuat extends Authenticatable
     	return $data;
     }
 
+    public static function layChiTietPhieuXuatTheoId($id){
+        $data=DB::select('SELECT ctpx.id_phieu_xuat, ctpx.id_san_pham, ctpx.gia_xuat, ctpx.ghi_chu, dvt.ten_don_vi_tinh, sp.ma_san_pham, sp.ten_san_pham,
+            SUM(ctpx.so_luong) AS so_luong, SUM(ctpx.giam_gia) AS giam_gia, SUM(ctpx.thanh_tien) AS thanh_tien
+            FROM chi_tiet_phieu_xuat ctpx
+            LEFT JOIN san_pham sp ON ctpx.id_san_pham=sp.id
+            LEFT JOIN don_vi_tinh dvt ON sp.id_don_vi_tinh=dvt.id
+            WHERE ctpx.id_phieu_xuat='.$id.'
+            GROUP BY ctpx.id_phieu_xuat, ctpx.id_san_pham, ctpx.gia_xuat, ctpx.ghi_chu, dvt.ten_don_vi_tinh, sp.ma_san_pham, sp.ten_san_pham');
+        $data = collect($data)->map(function($x){ return (array) $x; })->toArray(); 
+        return $data;
+    }
+
     public static function layDanhSachPhieuXuat(){
-    	$data=DB::select('select px.id, px.ma_phieu_xuat, kh.ten_khach_hang, kh.ma_khach_hang, kh.dia_chi, kh.di_dong, kh.email, px.ghi_chu, 
+    	$data=DB::select('select px.id, px.ma_phieu_xuat, DATE_FORMAT(px.ngay_xuat,"%d/%m/%Y") AS ngay_xuat, DATE_FORMAT(px.ngay_xuat,"%m%Y") AS thang_xuat, kh.ten_khach_hang, kh.ma_khach_hang, kh.dia_chi, kh.di_dong, kh.email, px.ghi_chu, 
 		sum(ctpx.giam_gia), sum(ctpx.thanh_tien), (sum(ctpx.thanh_tien)-sum(ctpx.giam_gia)) as tong_tien	
 		from phieu_xuat px
 		left join chi_tiet_phieu_xuat ctpx on px.id=ctpx.id_phieu_xuat
 		left join khach_hang kh on px.id_khach_hang=kh.id
-		group by px.id, px.ma_phieu_xuat, kh.ten_khach_hang, kh.ma_khach_hang, kh.dia_chi, kh.di_dong, kh.email, px.ghi_chu');
+		group by px.id, px.ma_phieu_xuat, DATE_FORMAT(px.ngay_xuat,"%d/%m/%Y"), DATE_FORMAT(px.ngay_xuat,"%m%Y"), kh.ten_khach_hang, kh.ma_khach_hang, kh.dia_chi, kh.di_dong, kh.email, px.ghi_chu');
     	$data = collect($data)->map(function($x){ return (array) $x; })->toArray(); 
-    	return $data;
+    	$result=array();
+        foreach ($data as $key => $value) {
+            $result[$value['thang_xuat']][]=$value;
+        }
+        return $result;
     }
 
     public static function exportPhieuXuat(){

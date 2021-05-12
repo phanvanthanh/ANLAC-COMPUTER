@@ -11,7 +11,7 @@
             <th>Số lượng tồn</th>
             <th>Giá vốn</th>
             <th>Doanh thu</th>
-            <th>Lãi lỗ</th>
+            <th>Lợi nhuận</th>
         </tr>
     </thead>
     <tbody>                       
@@ -39,16 +39,16 @@
                 <td class="text-center">
                     {{$sanPham['ten_don_vi_tinh']}}      
                 </td>
-                <td>
+                <td class="text-center">
                     {{number_format($thongKeChung['so_luong_nhap'],0)}}
                 </td>                
-                <td>
+                <td class="text-center">
                     {{number_format($thongKeChung['so_luong_xuat'],0)}}
                 </td>
-                <td>
+                <td class="text-center">
                     {{number_format($thongKeChung['so_luong_ton'],0)}}
                 </td>
-                <td class="text-danger">
+                <td class="text-danger text-right">
                     <!-- Vốn xuất -->
                     {{number_format($thongKeChung['von_xuat'],0)}}
                 </td>

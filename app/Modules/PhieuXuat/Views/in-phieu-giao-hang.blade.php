@@ -132,16 +132,16 @@
 								<td>
 									&nbsp;{{$chiTietPhieuXuat['ten_san_pham']}}
 								</td>
-								<td>
+								<td style="text-align:center;">
 									&nbsp;{{$chiTietPhieuXuat['ten_don_vi_tinh']}}
 								</td>
-								<td>
+								<td style="text-align:center;">
 									&nbsp;{{number_format($chiTietPhieuXuat['so_luong'],0)}}
 								</td>
-								<td>
+								<td style="text-align:right;">
 									&nbsp;{{number_format($chiTietPhieuXuat['gia_xuat'],0)}}
 								</td>
-								<td style="white-space: nowrap;">
+								<td style="white-space: nowrap;text-align:right;">
 									@php
 										$conLai=$chiTietPhieuXuat['thanh_tien']-$chiTietPhieuXuat['giam_gia'];
 									@endphp
@@ -154,8 +154,8 @@
 							</tr>
 						@endforeach
 						<tr>
-							<td colspan="6" class="text-right" style="text-align: right;"><b>Cộng tiền hàng &nbsp;</b></td>
-							<td>
+							<td colspan="6" class="text-right" style="text-align:right;"><b>Cộng tiền hàng &nbsp;</b></td>
+							<td style="text-align:right;">
 								@php $tongCong=$tongThanhTien-$tongGiamGia; @endphp
 								&nbsp;<b>{{number_format($tongCong,0)}}</b>
 							</td>
@@ -170,11 +170,11 @@
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								</td>
-							<td>&nbsp;</td>
+							<td style="text-align:center">&nbsp;</td>
 						</tr>
 						<tr>
-							<td colspan="6" class="text-right" style="text-align: right;">Tổng tiền thanh toán &nbsp;</td>
-							<td>&nbsp;{{number_format($phieuXuat['da_thanh_toan'],0)}}</td>
+							<td colspan="6" class="text-right" style="text-align:right;">Tổng tiền thanh toán &nbsp;</td>
+							<td style="text-align:right;">&nbsp;{{number_format($phieuXuat['da_thanh_toan'],0)}}</td>
 						</tr>
 						<tr>
 							<td colspan="7">&nbsp;<b>Tổng cộng bằng chữ: <b style="font-size:15px;">@php echo Helper::chuyenSoThanhChu($tongCong); @endphp</b></b></td>
@@ -186,7 +186,7 @@
 		</div>
 		<div class="row">
 			<div class="col-12">
-				<p>Ghi chú:</p>
+				<p class="print" style="margin-top:10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ghi chú: {{$phieuXuat['ghi_chu']}}</p>
 			</div>
 		</div>
 		<div class="row">

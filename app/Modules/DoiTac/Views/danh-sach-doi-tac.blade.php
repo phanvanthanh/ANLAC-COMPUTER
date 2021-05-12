@@ -7,7 +7,6 @@
             <th>Tên</th>
             <th>Công ty</th>
             <th>Điện thoại</th>
-            <th>Email</th>
             <th>Địa chỉ</th>
             <th>Xử lý</th>
         </tr>
@@ -44,9 +43,6 @@
                 </td>
                 <td>
                     {{$doiTac['di_dong']}}      
-                </td>
-                <td>
-                    {{$doiTac['email']}}
                 </td>
                 <td>
                     {{$doiTac['dia_chi']}}

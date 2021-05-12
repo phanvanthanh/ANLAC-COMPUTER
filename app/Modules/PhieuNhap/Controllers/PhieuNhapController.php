@@ -84,9 +84,9 @@ class PhieuNhapController extends Controller{
                 // if(isset($data['da_thanh_toan'])){
                 //     $dataPhieuNhap['da_thanh_toan']=1;
                 // }
-                $dataPhieuNhap['da_thanh_toan']=$data['da_thanh_toan'];
+                $dataPhieuNhap['da_thanh_toan']=str_replace(',','',$data['da_thanh_toan']);
                 $dataPhieuNhap['ngay_nhap']=$data['ngay_nhap'];
-                $dataPhieuNhap['ghi_chu']=$data['ghi_chu'];
+                //$dataPhieuNhap['ghi_chu']=$data['ghi_chu'];
                 $phieuNhap=PhieuNhap::create($dataPhieuNhap);
                 $idPhieuNhap=$phieuNhap->id;             
             }
@@ -94,11 +94,12 @@ class PhieuNhapController extends Controller{
             $dataChiTietPhieuNhap=array();
             $dataChiTietPhieuNhap['id_phieu_nhap']=$idPhieuNhap;
             $dataChiTietPhieuNhap['id_san_pham']=$idSanPham;
-            $dataChiTietPhieuNhap['gia_nhap']=$data['gia_nhap'];
-            $dataChiTietPhieuNhap['so_luong']=$data['so_luong'];
-            $dataChiTietPhieuNhap['thanh_tien']=$data['thanh_tien'];
+            $dataChiTietPhieuNhap['gia_nhap']=str_replace(',','',$data['gia_nhap']);
+            $dataChiTietPhieuNhap['so_luong']=str_replace(',','',$data['so_luong']);
+            $dataChiTietPhieuNhap['thanh_tien']=str_replace(',','',$data['thanh_tien']);
             $dataChiTietPhieuNhap['ghi_chu']='';
             $dataChiTietPhieuNhap['state']=0;
+
             $chiTietPhieuNhap=ChiTietPhieuNhap::create($dataChiTietPhieuNhap);
 
             return array("error"=>'','id_phieu_nhap'=>$idPhieuNhap); // Trả về thông báo lưu dữ liệu thành công
@@ -167,6 +168,68 @@ class PhieuNhapController extends Controller{
         return array('error'=>"Không tìm thấy phương thức truyền dữ liệu"); // return dữ liệu về AJAX
     }
 
+    public function xemPhieuNhap(Request $request){
+        if(RequestAjax::ajax()){ // Kiểm tra gửi đường ajax
+            // Khai báo các dữ liệu bên form cần thiết
+            $error='';
+            $dataForm=RequestAjax::all(); $data=array();
+            // Kiểm tra dữ liệu không hợp lệ
+            $id=0; $error=''; $chiTietPhieuNhaps=array(); $khachHang=array(); $phieuNhap=array(); $tongNoCu=0; $tongDaThanhToanNoCu=0; $tongConLaiNoCu=0;
+
+            if(!Auth::id()){
+                $error='Chưa đăng nhập vào hệ thống';
+                return view('PhieuNhap::xem-phieu-nhap', compact('id', 'error', 'chiTietPhieuNhaps', 'khachHang', 'phieuNhap', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'));
+            }
+            if(!isset($request->id) || !is_numeric($request->id)){
+                $error='Không tìm thấy phiếu cần in';
+                return view('PhieuNhap::xem-phieu-nhap', compact('id', 'error', 'chiTietPhieuNhaps', 'khachHang', 'phieuNhap', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'));
+            }
+            $id=$request->id;
+            
+
+            $phieuNhap=PhieuNhap::where('id','=',$id)->get()->toArray();
+            if(!$phieuNhap){            
+                return view('PhieuNhap::xem-phieu-nhap', compact('id', 'error', 'chiTietPhieuNhaps', 'khachHang', 'phieuNhap', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'));
+            }else{
+                $phieuNhap=$phieuNhap[0];
+            }
+
+
+            $chiTietPhieuNhaps=ChiTietPhieuNhap::select('chi_tiet_phieu_nhap.id', 'chi_tiet_phieu_nhap.id_phieu_nhap', 'chi_tiet_phieu_nhap.id_san_pham', 'chi_tiet_phieu_nhap.gia_nhap', 'chi_tiet_phieu_nhap.so_luong', 'chi_tiet_phieu_nhap.giam_gia', 'chi_tiet_phieu_nhap.thanh_tien', 'chi_tiet_phieu_nhap.ghi_chu', 'don_vi_tinh.ten_don_vi_tinh', 'san_pham.ma_san_pham', 'san_pham.ten_san_pham')
+            ->leftJoin('san_pham','chi_tiet_phieu_nhap.id_san_pham','=','san_pham.id')
+            ->leftJoin('don_vi_tinh','san_pham.id_don_vi_tinh','=','don_vi_tinh.id')
+            ->where('chi_tiet_phieu_nhap.id_phieu_nhap','=',$id)
+            ->get()->toArray();
+
+            $khachHang=PhieuNhap::select('doi_tac.ten_doi_tac', 'doi_tac.di_dong', 'doi_tac.dia_chi')
+            ->leftJoin('doi_tac','phieu_nhap.id_doi_tac','=','doi_tac.id')
+            ->where('phieu_nhap.id','=',$id)
+            ->get()->toArray();
+            if($khachHang){
+                $khachHang=$khachHang[0];
+            }
+
+
+            $thanhToan=DB::select("SELECT SUM(da_thanh_toan) AS no_cu_da_thanh_toan FROM phieu_nhap WHERE id_doi_tac=".$phieuNhap['id_doi_tac']." and id!=".$id);
+            $thanhToan = collect($thanhToan)->map(function($x){ return (array) $x; })->toArray(); 
+            if($thanhToan){
+                $tongDaThanhToanNoCu=$thanhToan[0]['no_cu_da_thanh_toan'];
+            }
+
+            $thanhToan=DB::select("SELECT SUM(ctpx.thanh_tien-ctpx.giam_gia) AS no_cu_thanh_tien  FROM phieu_nhap px
+                LEFT JOIN chi_tiet_phieu_nhap ctpx on px.id=ctpx.id_phieu_nhap
+                WHERE px.id_doi_tac=".$phieuNhap['id_doi_tac']." and px.id!=".$id);
+            $thanhToan = collect($thanhToan)->map(function($x){ return (array) $x; })->toArray(); 
+            if($thanhToan){
+                $tongNoCu=$thanhToan[0]['no_cu_thanh_tien'];
+            }
+            $tongConLaiNoCu=$tongNoCu-$tongDaThanhToanNoCu; 
+            $view=view('PhieuNhap::xem-phieu-nhap', compact('id', 'error', 'chiTietPhieuNhaps', 'khachHang', 'phieuNhap', 'tongNoCu', 'tongDaThanhToanNoCu', 'tongConLaiNoCu'))->render(); // Trả dữ liệu ra view trước     
+            return response()->json(['html'=>$view, 'error'=>$error]); // return dữ liệu về AJAX sau
+        }
+        return array('error'=>"Không tìm thấy phương thức truyền dữ liệu"); // return dữ liệu về AJAX
+    }
+
     public function layThongTinDoiTacTheoTenVaMa(Request $request){
         if(RequestAjax::ajax()){ // Kiểm tra phương thức gửi dữ liệu là AJAX
             $dataForm=RequestAjax::all(); // Lấy tất cả dữ liệu đã gửi
@@ -219,11 +282,11 @@ class PhieuNhapController extends Controller{
                 $dataPhieuNhap['id_doi_tac']=$doiTac[0]['id'];
                 $dataPhieuNhap['ma_phieu_nhap']=$dataForm['ma_phieu_nhap'];
                 $dataPhieuNhap['ngay_nhap']=$dataForm['ngay_nhap'];
-                $dataPhieuNhap['ghi_chu']=$dataForm['ghi_chu'];
+                // $dataPhieuNhap['ghi_chu']=$dataForm['ghi_chu'];
                 // if(isset($dataForm['da_thanh_toan'])){
                 //     $dataPhieuNhap['da_thanh_toan']=1;
                 // }
-                $dataPhieuNhap['da_thanh_toan']=$dataForm['da_thanh_toan'];
+                $dataPhieuNhap['da_thanh_toan']=str_replace(',','',$dataForm['da_thanh_toan']);
                 $phieuNhap->update($dataPhieuNhap);
                 return array("error"=>'');
             }else{

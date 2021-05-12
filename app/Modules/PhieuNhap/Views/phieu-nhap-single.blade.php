@@ -43,16 +43,16 @@
             <div class="form-group row">
               <label for="da_thanh_toan" class="col-sm-4 col-form-label ">Đã thanh toán</label>
               <div class="col-sm-8">
-                 <input type="Number" class="form-control da_thanh_toan" name="da_thanh_toan" placeholder="Số tiền đã thanh toán" @if($checkData==1) value="{{$data['da_thanh_toan']}}" @endif tabindex="4">
+                 <input type="Text" class="form-control da_thanh_toan" name="da_thanh_toan" placeholder="Số tiền đã thanh toán" @if($checkData==1) value="{{$data['da_thanh_toan']}}" @endif tabindex="4" data-type="currency"  pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$">
               </div>
             </div>
 
-            <div class="form-group row">
+            {{-- <div class="form-group row">
               <label for="ghi_chu" class="col-sm-4 col-form-label ">Ghi chú</label>
               <div class="col-sm-8">
                  <input type="Text" class="form-control ghi_chu" name="ghi_chu" placeholder="Nhập ghi chú" @if($checkData==1) value="{{$data['ghi_chu']}}" @endif tabindex="5">
               </div>
-            </div>
+            </div> --}}
 
 
             <div class="form-group row">
@@ -100,7 +100,7 @@
             <div class="form-group row">
               <label for="ten_san_pham" class="col-sm-4 col-form-label ">Tên sản phẩm <span class="text-danger">(*)</span></label>
               <div class="col-sm-8 autocomplete">
-                 <input type="Text" class="form-control input-autocomplete ten_san_pham" id="ten_san_pham" name="ten_san_pham" placeholder="Chọn sản phẩm cần nhập kho" autocomplete="off" tabindex="6">
+                 <input type="Text" class="form-control input-autocomplete ten_san_pham" id="ten_san_pham" name="ten_san_pham" placeholder="Chọn sản phẩm cần nhập kho" autocomplete="off" tabindex="5">
               </div>
             </div>
 
@@ -108,23 +108,28 @@
             <div class="form-group row">
                 <label for="gia_nhap" class="col-sm-4 col-form-label ">Đơn giá nhập <span class="text-danger">(*)</span></label>
                 <div class="col-sm-8">
-                   <input type="Number" class="form-control gia_nhap" name="gia_nhap" placeholder="Vui lòng nhập giá nhập của sản phẩm" autocomplete="off" tabindex="7">
+                   <input type="Text" class="form-control gia_nhap" name="gia_nhap" placeholder="Vui lòng nhập giá nhập của sản phẩm" autocomplete="off" tabindex="6" data-type="currency"  pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="so_luong" class="col-sm-4 col-form-label ">Số lượng <span class="text-danger">(*)</span></label>
                 <div class="col-sm-8">
-                   <input type="Number" class="form-control so_luong" name="so_luong" placeholder="Vui lòng nhập số lượng của sản phẩm" autocomplete="off" tabindex="8">
+                   <input type="Text" class="form-control so_luong" name="so_luong" placeholder="Vui lòng nhập số lượng của sản phẩm" autocomplete="off" tabindex="7" data-type="currency"  pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$">
                 </div>
             </div>
 
             <div class="form-group row">
                 <label for="thanh_tien" class="col-sm-4 col-form-label ">Thành tiền <span class="text-danger">(*)</span></label>
                 <div class="col-sm-8">
-                   <input type="Number" class="form-control thanh_tien" name="thanh_tien" placeholder="Vui lòng nhập thành tiền của sản phẩm"  autocomplete="off" tabindex="9">
+                   <input type="Text" class="form-control thanh_tien" name="thanh_tien" placeholder="Vui lòng nhập thành tiền của sản phẩm"  autocomplete="off" tabindex="8" data-type="currency"  pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$">
                 </div>
             </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 text-right">
+            <button type="button" class="btn btn-vnpt btn-them" style="margin-bottom: 10px;"><i class="icon-check"></i> Thêm</button>
           </div>
         </div>
         <div class="row">
@@ -161,6 +166,7 @@
 
 
 
+     <script type="text/javascript" src="{{ asset('public/js/input-currency.js') }}"></script>
      <script type="text/javascript" src="{{ asset('public/js/uploadFile.js') }}"></script>
      <script type="text/javascript" src="{{ asset('public/js/showFile.js') }}"></script> 
      <script type="text/javascript" src="{{ asset('public/js/autocomplete.js') }}"></script> 
@@ -197,17 +203,26 @@
       var _token=jQuery('form[name="frm-them-moi"]').find("input[name='_token']").val();
 
       $('.so_luong').on("change", function(e) {
-          var thanhTien=jQuery(this).val()*jQuery('.gia_nhap').val();
+          var soLuong=jQuery('.so_luong').val().replace(/,/g, '');
+          var giaNhap=jQuery('.gia_nhap').val().replace(/,/g, '');
+          //var thanhTien=jQuery(this).val()*jQuery('.gia_nhap').val();
+          var thanhTien=soLuong*giaNhap;
           jQuery('.thanh_tien').val(thanhTien);
       });
       $('.so_luong').on("keypress", function(e) {
           /* ENTER PRESSED*/
-          var thanhTien=jQuery(this).val()*jQuery('.gia_nhap').val();
+          var soLuong=jQuery('.so_luong').val().replace(/,/g, '');
+          var giaNhap=jQuery('.gia_nhap').val().replace(/,/g, '');
+          //var thanhTien=jQuery(this).val()*jQuery('.gia_nhap').val();
+          var thanhTien=soLuong*giaNhap;
           jQuery('.thanh_tien').val(thanhTien);
       });
       $('.so_luong').on("keyup", function(e) {
           /* ENTER PRESSED*/
-          var thanhTien=jQuery(this).val()*jQuery('.gia_nhap').val();
+          var soLuong=jQuery('.so_luong').val().replace(/,/g, '');
+          var giaNhap=jQuery('.gia_nhap').val().replace(/,/g, '');
+          //var thanhTien=jQuery(this).val()*jQuery('.gia_nhap').val();
+          var thanhTien=soLuong*giaNhap;
           jQuery('.thanh_tien').val(thanhTien);
       });
 
@@ -221,6 +236,20 @@
               jQuery('.ten_san_pham').focus();
               return false;
           }
+      });
+      $('.btn-them').on('click', function() {
+        var soLuong=jQuery('.so_luong').val().replace(/,/g, '');
+        var giaNhap=jQuery('.gia_nhap').val().replace(/,/g, '');
+        var thanhTien=soLuong*giaNhap;
+        jQuery('.thanh_tien').val(thanhTien);
+          
+        var frmId=jQuery(this).closest('form').attr('id');
+          /* ENTER PRESSED*/
+          /* FOCUS ELEMENT */
+          themChiTietPhieuNhap(_token, $("form#"+frmId), "{{ route('them-chi-tiet-phieu-nhap') }}", "{{ route('load-chi-tiet-phieu-nhap') }}", '.load-chi-tiet');
+          jQuery('.ten_san_pham').val('');
+          jQuery('.ten_san_pham').focus();
+          return false;
       });
 
       $('.ngay_nhap').on("keypress", function(e) {

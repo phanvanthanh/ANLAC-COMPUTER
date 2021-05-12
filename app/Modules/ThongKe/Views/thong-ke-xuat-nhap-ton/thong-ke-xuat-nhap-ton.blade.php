@@ -62,7 +62,7 @@
                                 <div class="d-flex align-items-center justify-content-md-center">
                                   <i class="mdi mdi-chart-line-stacked icon-lg text-danger"></i>
                                   <div class="ml-3">
-                                    <p class="mb-0">Lãi lỗ</p>
+                                    <p class="mb-0">Lợi nhuận</p>
                                     <h6>
                                         @php 
                                           $doanhThu=$thongKeChung['tong_tien_xuat']-$thongKeChung['gia_von_xuat'];

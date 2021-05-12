@@ -76,7 +76,7 @@
           </div>
        </div>
 
-       <div class="form-group row">
+       <div class="form-group row d-none">
           <label for="email" class="col-sm-4 col-form-label ">Địa chỉ email</label>
           <div class="col-sm-8">
              <input type="email" class="form-control email" name="email" placeholder="Vui lòng nhập địa chỉ email" @if($checkData==1) value="{{$data['email']}}" @endif>

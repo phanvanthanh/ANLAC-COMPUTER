@@ -29810,3 +29810,7 @@ table tbody tr.tr-small td, table tbody tr.tr-small th{
   padding: 0px;
   height: 34.6px;
 }
+
+.tr-default{
+  background-color: #e9ecef;
+}
