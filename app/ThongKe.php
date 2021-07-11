@@ -207,6 +207,23 @@ class ThongKe extends Authenticatable
 			$result['pc_tong_chi']=$phieuChi[0]['tong_chi'];
 		}
 
+		// Đối tác (nhà cung cấp)
+		$namHienTai=date('Y');
+		$loiNhuanTheoThang=DB::select("select DATE_FORMAT(px.ngay_xuat,'%m') AS thang_xuat, DATE_FORMAT(px.ngay_xuat,'%Y') AS nam_xuat, sum(ctpx.gia_von*ctpx.so_luong) as gia_von_xuat, sum(ctpx.thanh_tien) as thanh_tien_xuat, sum(ctpx.giam_gia) as giam_gia_xuat 
+			from chi_tiet_phieu_xuat ctpx
+			left join phieu_xuat px on ctpx.id_phieu_xuat=px.id
+			where DATE_FORMAT(px.ngay_xuat,'%Y')=".$namHienTai."
+			group by DATE_FORMAT(px.ngay_xuat,'%m'), DATE_FORMAT(px.ngay_xuat,'%Y')
+		");
+		$loiNhuanTheoThang = collect($loiNhuanTheoThang)->map(function($x){ return (array) $x; })->toArray();
+		$loiNhuanTheoThangs=array();
+		foreach ($loiNhuanTheoThang as $loiNhuanThang) {
+			$loiNhuan=$loiNhuanThang['thanh_tien_xuat']-($loiNhuanThang['gia_von_xuat']+$loiNhuanThang['giam_gia_xuat']);
+			$loiNhuanThang['loi_nhuan']=$loiNhuan;
+			$loiNhuanTheoThangs[$loiNhuanThang['thang_xuat']]=$loiNhuanThang;
+		}
+		$result['loi_nhuan_theo_thang']=$loiNhuanTheoThangs;
+
 
 		return $result;
     }

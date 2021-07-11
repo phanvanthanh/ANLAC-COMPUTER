@@ -17,11 +17,11 @@ class SanPham extends Authenticatable
     public $timestamps=false;
 
     public static function layDanhSachSanPhamTonKho(){
-    	$data=DB::select('select sp.id, sp.ten_san_pham, sp.ma_san_pham, sp.hinh_anh, sp.gia_nhap_goi_y, sp.gia_xuat_goi_y, sp.mo_ta_san_pham, dvt.ten_don_vi_tinh,
+    	$data=DB::select('select sp.id, sp.ten_san_pham, sp.ma_san_pham, sp.hinh_anh, sp.gia_nhap_goi_y, sp.gia_xuat_goi_y, sp.mo_ta_san_pham, dvt.ten_don_vi_tinh, ctpn.gia_nhap,
 			sum(ctpn.so_luong) as so_luong, sum(ctpn.so_luong_da_xuat) as so_luong_da_xuat from san_pham sp
 			left join chi_tiet_phieu_nhap ctpn on sp.id=ctpn.id_san_pham
 			left join don_vi_tinh dvt on sp.id_don_vi_tinh=dvt.id
-			group by sp.id, sp.ten_san_pham, sp.ma_san_pham, sp.hinh_anh, sp.gia_nhap_goi_y, sp.gia_xuat_goi_y, sp.mo_ta_san_pham, dvt.ten_don_vi_tinh');
+			group by sp.id, sp.ten_san_pham, sp.ma_san_pham, sp.hinh_anh, sp.gia_nhap_goi_y, sp.gia_xuat_goi_y, sp.mo_ta_san_pham, dvt.ten_don_vi_tinh, ctpn.gia_nhap');
 		$data = collect($data)->map(function($x){ return (array) $x; })->toArray(); 
 		return $data;
     }

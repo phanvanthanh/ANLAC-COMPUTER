@@ -50,11 +50,11 @@ class CongNo extends Authenticatable
 
     public static function laySoPhieuNoTheoIdKhachHang($id){
     	$data=DB::select("SELECT * FROM(
-				SELECT px.id, px.ngay_xuat, px.ma_phieu_xuat, px.id_khach_hang, px.da_thanh_toan, (SUM(ctpx.thanh_tien)-(px.da_thanh_toan+SUM(ctpx.giam_gia))) AS tong_no 
+				SELECT px.id, px.ngay_xuat, px.ma_phieu_xuat, px.id_khach_hang, px.da_thanh_toan, px.ghi_chu, (SUM(ctpx.thanh_tien)-(px.da_thanh_toan+SUM(ctpx.giam_gia))) AS tong_no 
 				FROM phieu_xuat px
 				LEFT JOIN chi_tiet_phieu_xuat ctpx ON px.id=ctpx.id_phieu_xuat
 				LEFT JOIN khach_hang kh ON px.id_khach_hang=kh.id
-				GROUP BY  px.id, px.ngay_xuat, px.ma_phieu_xuat, px.id_khach_hang, px.da_thanh_toan
+				GROUP BY  px.id, px.ngay_xuat, px.ma_phieu_xuat, px.id_khach_hang, px.da_thanh_toan, px.ghi_chu
 			) AS t1
 			WHERE t1.tong_no>0 and t1.id_khach_hang=".$id
 		);
