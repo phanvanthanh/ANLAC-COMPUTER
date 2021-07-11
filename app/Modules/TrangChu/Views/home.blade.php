@@ -1,6 +1,9 @@
 @extends('layouts.index')
 @section('title', 'Trang chủ')
 @section('content')
+@php
+	$loiNhuanTheoThang=$thongKeChung['loi_nhuan_theo_thang'];
+@endphp
 	<div class="col-12">
 		<div class="row">
           <div class="col-12">
@@ -68,33 +71,78 @@
             </div>
           </div>
         </div>
+      <div class="row">
+      	<div class="col-12">&nbsp;</div>
+      </div>
+      <div class="row">
+      	<div class="col-12">
+      		<div class="card"><br>
+      			<h6 class="card-title text-success" style="margin-left:30px;">
+      				Tổng lợi nhuận theo từng tháng (năm @php echo date('Y'); @endphp)
+      			</h6>
+      			<div class="row text-center text-danger w-100 h-100" style="margin-bottom: -10px; z-index: 1000;">
+      				@php
+				    		/*for($i=1; $i<=6; $i++){
+				    			$j=$i;
+				    			if($i<10){
+				    				$j='0'.$i;
+				    			}
+					    		if(isset($loiNhuanTheoThang[$j])){
+						    		echo '<div class="col-2">'.($loiNhuanTheoThang[$j]['loi_nhuan']/1000000).'</div>';
+					    		}else{
+					    			echo '<div class="col-2"></div>';
+					    		}
+					    	}*/
+				    	@endphp
+      				
+      			</div>
+      		</div>
+      	</div>
+      	{{-- <div class="col-6">
+      		<div class="card"><br>
+      			<h6 class="card-title text-info" style="margin-left:30px;">
+      				Lợi nhuận 6 tháng cuối năm (Đơn vị tính: Triệu đồng)
+      			</h6>
+      			<div class="row text-center text-primary w-100 h-100" style="margin-bottom: -10px; z-index: 1000;">
+      				@php
+				    		/*for($i=7; $i<=12; $i++){
+				    			$j=$i;
+				    			if($i<10){
+				    				$j='0'.$i;
+				    			}
+					    		if(isset($loiNhuanTheoThang[$j])){
+						    		echo '<div class="col-2">'.($loiNhuanTheoThang[$j]['loi_nhuan']/1000000).'</div>';
+					    		}else{
+					    			echo '<div class="col-2">12.000</div>';
+					    		}
+					    	}*/
+				    	@endphp
+      				
+      			</div>
+      		</div>
+      	</div> --}}
+      </div>
 	    <div class="row">
-	    	<div class="col-6 col-md-6 col-lg-6 grid-margin stretch-card">
-              <div class="card bg-info">
-                <div class="text-white py-3 px-4">
-                  <h6 class="card-title text-white mb-0">Tổng đơn nhập hàng theo tháng</h6>
-                  <p>120 đơn</p>
-                  <div class="chart-container">
-                    <canvas class="w-100 h-100" id="dashboard-lineChart-1" height="150"></canvas>
-                  </div>
-                  <small class="text-white">Xem chi tiết</small>
-                </div>
+	    	<div class="col-12 col-md-12 col-lg-12 grid-margin stretch-card">	    		
+          <div class="card">
+            <div class="text-white py-3 px-4">              
+              <div class="chart-container">
+                <canvas class="w-100 h-100" id="dashboard-column-1" style="height: 250px !important;"></canvas>
+              </div>              
+            </div>
+          </div>
+        </div>
+        {{-- <div class="col-6 col-md-6 col-lg-6 grid-margin stretch-card">
+          <div class="card">
+            <div class="text-white py-3 px-4">
+              <div class="chart-container">
+                <canvas class="w-100 h-100" id="dashboard-column-2" style="height: 250px !important;"></canvas>
               </div>
             </div>
-            <div class="col-6 col-md-6 col-lg-6 grid-margin stretch-card">
-              <div class="card bg-success">
-                <div class="text-white py-3 px-4">
-                  <h6 class="card-title text-white mb-0">Tổng đơn xuất hàng theo tháng</h6>
-                  <p>120 đơn</p>
-                  <div class="chart-container">
-                    <canvas class="w-100 h-100" id="dashboard-lineChart-2" height="150"></canvas>
-                  </div>
-                  <small class="text-white">Xem chi tiết</small>
-                </div>
-              </div>
-            </div>
+          </div>
+        </div> --}}
 	    </div>
-	    <div class="row">
+{{-- 	    <div class="row">
 	    	
             <div class="col-6 col-md-6 col-lg-6 grid-margin stretch-card">
               <div class="card bg-success">
@@ -120,62 +168,8 @@
                 </div>
               </div>
             </div>
-	    </div>
-	    <!-- <div class="row">
-	    	<div class="col-md-6 col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title">Daily Sales</h6>
-                  <div class="w-75 mx-auto">
-                    <div class="d-flex justify-content-between text-center">
-                      <div class="wrapper">
-                        <h4>$2256</h4>
-                        <small class="text-muted">Totel sales</small>
-                      </div>
-                      <div class="wrapper">
-                        <h4>584</h4>
-                        <small class="text-muted">Compaign</small>
-                      </div>
-                    </div>
-                    <div id="dashboard-donut-chart" style="height:250px"></div>
-                  </div>
-                  <div id="legend" class="donut-legend"></div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-lg-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <h6 class="card-title">Total Revenue</h6>
-                  <div class="w-75 mx-auto">
-                    <div class="d-flex justify-content-between text-center mb-5">
-                      <div class="wrapper">
-                        <h4>6,256</h4>
-                        <small class="text-muted">Totel sales</small>
-                      </div>
-                      <div class="wrapper">
-                        <h4>8569</h4>
-                        <small class="text-muted">Open Compaign</small>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="morris-line-example" style="height:250px;"></div>
-                  <div class="w-75 mx-auto">
-                    <div class="d-flex justify-content-between text-center mt-5">
-                      <div class="wrapper">
-                        <h4>5136</h4>
-                        <small class="text-muted">Online Sales</small>
-                      </div>
-                      <div class="wrapper">
-                        <h4>4596</h4>
-                        <small class="text-muted">Store Sales</small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-	    </div> -->
+	    </div> --}}
+	    
 	</div>
 
 
@@ -196,121 +190,207 @@
 	<!-- End custom js for this page-->
 	<script type="text/javascript">
 	jQuery(document).ready(function() {
+			/*Biểu đồ cột 1*/
+	    var data = {
+		    labels: [
+		    	@php
+			    	for($i=1; $i<=12; $i++){
+		    			$j=$i;
+		    			if($i<10){
+		    				$j='0'.$i;
+		    			}
+			    		if(isset($loiNhuanTheoThang[$j])){			    			
+				    		echo '"'.$loiNhuanTheoThang[$j]['thang_xuat'].'"';				    			
+				    		if ($i<12){
+				    			echo ",";
+				    		}
+			    		}else{
+			    			echo '"'.$j.'"';				    			
+				    		if ($i<12){
+				    			echo ",";
+				    		}
+			    		}
+			    	}
+		    	@endphp
+		    	
+		    ],
+		    datasets: [{
+		      label: '# Giá trị (Triệu đồng)',
+		      data: [
+		      	@php
+			    		for($i=1; $i<=12; $i++){
+			    			$j=$i;
+			    			if($i<10){
+			    				$j='0'.$i;
+			    			}
+				    		if(isset($loiNhuanTheoThang[$j])){
+					    		echo ($loiNhuanTheoThang[$j]['loi_nhuan']/1000000);
+					    		if ($i<12){
+					    			echo ",";
+					    		}
+				    		}else{
+					    		echo 0;				    		
+					    		if ($i<12){
+					    			echo ",";
+					    		}
+				    		}
+				    	}
+			    	@endphp
+		      ],
+		      backgroundColor: [
+		      @php
+		    		for($i=1; $i<=12; $i++){
+		    			echo "'rgb(0, 194, 146)'";
+		    			if($i<12){
+		    				echo ",";
+		    			}
+		    		}
+		    	@endphp
+		      ],
+		      borderColor: [
+		        @php
+			    		for($i=1; $i<=12; $i++){
+			    			echo "'rgb(0, 194, 146)'";
+			    			if($i<12){
+			    				echo ",";
+			    			}
+			    		}
+			    	@endphp
+		      ],
+		      borderWidth: 1
+		    }]
+		  };
 
-	  	if ($("#dashboard-lineChart-1").length) {
-	      var lineChartCanvas = $("#dashboard-lineChart-1").get(0).getContext("2d");
-	      var lineChart = new Chart(lineChartCanvas, {
-	        type: 'line',
-	        data: {
-	          labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
-	          datasets: [{
-	            data: [2, 4, 3, 3, 2, 3],
-	            pointBackgroundColor: "#fff",
-	            pointBorderWidth: 1,
-	            backgroundColor: [
-	              'rgba(0,0,0,0)'
-	            ],
-	            borderColor: [
-	              '#caa8f9'
-	            ],
-	            borderWidth: 1
-	          }]
-	        },
-	        options: {
-	          responsive: true,
-	          maintainAspectRatio: true,
-	          scales: {
-	            xAxes: [{
-	              gridLines: {
-	                drawBorder: false,
-	                display: false
-	              },
-	              ticks: {
-	                display: false,
-	              }
-	            }],
-	            yAxes: [{
-	              gridLines: {
-	                drawBorder: false,
-	                display: false,
-	              },
-	              ticks: {
-	                display: false,
-	              }
-	            }]
-	          },
-	          legend: {
-	            display: false
-	          },
-	          tooltips: {
-	            enabled: false
-	          },
-	          layout: {
-	            padding: {
-	              top: 5,
-	              bottom: 5
-	            }
-	          }
-	        }
-	      });
-	    }
-	    if ($("#dashboard-lineChart-2").length) {
-	      var lineChartCanvas = $("#dashboard-lineChart-2").get(0).getContext("2d");
-	      var lineChart = new Chart(lineChartCanvas, {
-	        type: 'line',
-	        data: {
-	          labels: ["2013", "2014", "2014", "2015", "2016", "2017"],
-	          datasets: [{
-	            data: [2, 4, 3, 3, 2, 3],
-	            pointBackgroundColor: "#fff",
-	            pointBorderWidth: 1,
-	            backgroundColor: [
-	              'rgba(0,0,0,0)'
-	            ],
-	            borderColor: [
-	              '#fff'
-	            ],
-	            borderWidth: 1
-	          }]
-	        },
-	        options: {
-	          responsive: true,
-	          maintainAspectRatio: true,
-	          scales: {
-	            xAxes: [{
-	              gridLines: {
-	                drawBorder: false,
-	                display: false
-	              },
-	              ticks: {
-	                display: false,
-	              }
-	            }],
-	            yAxes: [{
-	              gridLines: {
-	                drawBorder: false,
-	                display: false,
-	              },
-	              ticks: {
-	                display: false,
-	              }
-	            }]
-	          },
-	          legend: {
-	            display: false
-	          },
-	          tooltips: {
-	            enabled: false
-	          },
-	          layout: {
-	            padding: {
-	              top: 5,
-	              bottom: 5
-	            }
-	          }
-	        }
-	      });
-	    }
+		  var options = {
+		    scales: {
+		      yAxes: [{
+		        ticks: {
+		          beginAtZero: true
+		        }
+		      }]
+		    },
+		    legend: {
+		      display: true
+		    },
+		    elements: {
+		      point: {
+		        radius: 0
+		      }
+		    }
+
+		  };
+
+		  if ($("#dashboard-column-1").length) {
+		    var barChartCanvas = $("#dashboard-column-1").get(0).getContext("2d");
+		    // This will get the first returned node in the jQuery collection.
+		    var barChart = new Chart(barChartCanvas, {
+		      type: 'bar',
+		      data: data,
+		      options: options
+		    });
+		  }
+		  /*End biểu đồ cột 1*/
+
+			/*Biểu đồ cột 2*/
+	    /*var data = {
+		    labels: [
+		    	@php
+			    	for($i=7; $i<=12; $i++){
+		    			$j=$i;
+		    			if($i<10){
+		    				$j='0'.$i;
+		    			}
+			    		if(isset($loiNhuanTheoThang[$j])){			    			
+				    		echo '"'.$loiNhuanTheoThang[$j]['thang_xuat'].'"';				    			
+				    		if ($i<12){
+				    			echo ",";
+				    		}
+			    		}else{
+			    			echo '"'.$j.'"';				    			
+				    		if ($i<12){
+				    			echo ",";
+				    		}
+			    		}
+			    	}
+		    	@endphp
+		    	
+		    ],
+		    datasets: [{
+		      label: '# Giá trị (Triệu đồng)',
+		      data: [
+		      	@php
+			    		for($i=7; $i<=12; $i++){
+			    			$j=$i;
+			    			if($i<10){
+			    				$j='0'.$i;
+			    			}
+				    		if(isset($loiNhuanTheoThang[$j])){
+					    		echo ($loiNhuanTheoThang[$j]['loi_nhuan']/1000000);
+					    		if ($i<12){
+					    			echo ",";
+					    		}
+				    		}else{
+					    		echo 0;				    		
+					    		if ($i<12){
+					    			echo ",";
+					    		}
+				    		}
+				    	}
+			    	@endphp
+		      ],
+		      backgroundColor: [
+		      @php
+		    		for($i=7; $i<=12; $i++){
+		    			echo "'rgb(171, 140, 228)'";
+		    			if($i<12){
+		    				echo ",";
+		    			}
+		    		}
+		    	@endphp
+		      ],
+		      borderColor: [
+		        @php
+			    		for($i=7; $i<=12; $i++){
+			    			echo "'rgb(171, 140, 228)'";
+			    			if($i<12){
+			    				echo ",";
+			    			}
+			    		}
+			    	@endphp
+		      ],
+		      borderWidth: 1
+		    }]
+		  };
+
+		  var options = {
+		    scales: {
+		      yAxes: [{
+		        ticks: {
+		          beginAtZero: true
+		        }
+		      }]
+		    },
+		    legend: {
+		      display: false
+		    },
+		    elements: {
+		      point: {
+		        radius: 0
+		      }
+		    }
+
+		  };
+
+		  if ($("#dashboard-column-2").length) {
+		    var barChartCanvas = $("#dashboard-column-2").get(0).getContext("2d");
+		    // This will get the first returned node in the jQuery collection.
+		    var barChart = new Chart(barChartCanvas, {
+		      type: 'bar',
+		      data: data,
+		      options: options
+		    });
+		  }*/
+		  /*End biểu đồ cột 2*/
 
 
 	    if ($("#dashboard-lineChart-3").length) {

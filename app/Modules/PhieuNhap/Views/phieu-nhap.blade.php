@@ -87,13 +87,22 @@
                     </div>
                 </div>
                 <br>
-               <div class="table-responsive load-danh-sach">
-                                  
-               </div>
-            </div>
+               
+            </div>           
+              
         </div>
+        
+          
     </div>
-
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+            <div class="table-responsive load-danh-sach">
+                                
+             </div>
+          </div>
+      </div>
+    </div>
 
     <div class="modal fade" id="modal-them-moi" tabindex="-1" role="dialog" aria-labelledby="modal-them-moi" aria-hidden="true">
          <div class="modal-dialog modal-lg" role="document">

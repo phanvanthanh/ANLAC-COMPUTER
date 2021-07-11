@@ -8,6 +8,8 @@ use GuzzleHttp;
 use Illuminate\Support\Facades\DB;
 use Request as RequestAjax;
 use App\ThongKe;
+use App\Jobs\SendEmail;
+use App\User;
 
 
 class TrangChuController extends Controller{
@@ -21,6 +23,15 @@ class TrangChuController extends Controller{
     }
 
     public function home(Request $request){
+        $users = User::where('email','=','p.thanhit@gmail.com')->get()->toArray();
+           // $message = [
+           //     'type' => 'Create task',
+           //     'task' => 'Test email',
+           //     'content' => 'has been created!',
+           // ];
+           // SendEmail::dispatch($message, $users)->delay(now()->addMinute(1));
+
+
         $thongKeChung=ThongKe::thongKeChung();     
         return view('TrangChu::home',compact('thongKeChung'));
     }

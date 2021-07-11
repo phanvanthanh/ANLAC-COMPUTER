@@ -7,10 +7,7 @@
             <th>Điện thoại</th>
             <th>Ngày</th>
             <th>Số phiếu nợ</th>
-            
-            <!-- <th>Công ty</th> -->
-            
-            <!-- <th>Địa chỉ</th> -->
+            <th>Ghi chú</th>
             
             
             <th>Tổng nợ</th>
@@ -52,6 +49,14 @@
                     
                     foreach($phieuNos as $phieuNo){
                         echo '<a target="_blank" href="'.route('in-phieu-xuat').'?id='.$phieuNo['id'].'" class="text-primary">'.$phieuNo['ma_phieu_xuat'].'</a><br>';
+                    }
+                @endphp
+                </td>
+                <td>
+                @php
+                    
+                    foreach($phieuNos as $phieuNo){
+                        echo '<a target="_blank" href="'.route('in-phieu-xuat').'?id='.$phieuNo['id'].'" class="text-primary">'.$phieuNo['ghi_chu'].'</a><br>';
                     }
                 @endphp
                 </td>
@@ -98,7 +103,7 @@
 
 
 <script type="text/javascript" src="{{ asset('public/js/t-tree.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('public/js/t-scroll.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         $.fn.dataTable.ext.errMode = 'none';

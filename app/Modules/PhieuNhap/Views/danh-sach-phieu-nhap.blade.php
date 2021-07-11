@@ -140,6 +140,7 @@
 
 
 <script type="text/javascript" src="{{ asset('public/js/t-tree.js') }}"></script>
+<script type="text/javascript" src="{{ asset('public/js/t-scroll.js') }}"></script>
 
 <script type="text/javascript">
     jQuery(document).ready(function() {
@@ -204,6 +205,9 @@
             getById(_token, id, "{{ route('xem-phieu-nhap') }}", ".frm-xem-phieu-nhap"); // gọi sự kiện lấy dữ liệu theo id
             $('#modal-xem-phieu-nhap').modal('show'); // bật form sửa     
         });
+
+
+        
         
     });
 </script>

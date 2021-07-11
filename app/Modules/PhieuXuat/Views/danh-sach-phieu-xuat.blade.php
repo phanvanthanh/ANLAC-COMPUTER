@@ -146,7 +146,7 @@
 
 
 <script type="text/javascript" src="{{ asset('public/js/t-tree.js') }}"></script>
-
+<script type="text/javascript" src="{{ asset('public/js/t-scroll.js') }}"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         $.fn.dataTable.ext.errMode = 'none';

@@ -46,11 +46,16 @@
                   </div>
                 </div>
                 <br>
-               <div class="table-responsive load-danh-sach">
-                                  
-               </div>
+               
             </div>
         </div>
+    </div>
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="table-responsive load-danh-sach"></div>
+        </div>
+      </div>
     </div>
 
     <div class="modal fade" id="modal-them-moi" tabindex="-1" role="dialog" aria-labelledby="modal-them-moi" aria-hidden="true">
@@ -80,8 +85,34 @@
     jQuery(document).ready(function() {
       var _token=jQuery('form[name="frm-them-moi"]').find("input[name='_token']").val();
       loadTable(_token, "{{ route('danh-sach-cong-no') }}", '.load-danh-sach');
-      
     });
+
+    var lastScrollTop = 0;
+      $(window).scroll(function(event){
+         var st = $(this).scrollTop();
+         console.log(st);
+         if (st > lastScrollTop && st>250){
+             // downscroll code
+             var height=jQuery('#order-listing thead tr').attr('height');
+              jQuery('#order-listing thead tr').css({
+                  'position': 'fixed',
+                  'margin-top': '-235px',
+                  'z-index': '100000'
+              });
+         } else {
+              if(st<250){
+                  // upscroll code
+                  jQuery('#order-listing thead tr').css({
+                      'position': 'relative',
+                      'margin-top': '0px',
+                      'z-index': '100000'
+                  });
+              }
+                
+         }
+         lastScrollTop = st;
+      });
+
   </script>
 @endsection
 

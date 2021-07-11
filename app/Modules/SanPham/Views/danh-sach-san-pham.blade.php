@@ -11,6 +11,7 @@
             <th>Giá nhập (gợi ý)</th>
             <th>Giá xuất (gợi ý)</th>
             <th>Số lượng tồn</th>
+            <th>Tổng tiền</th>
             <th>Xử lý</th>
         </tr>
     </thead>
@@ -52,7 +53,7 @@
                 </td>
                 
                 <td>
-                    {{number_format($sanPham['gia_nhap_goi_y'],0)}}
+                    {{number_format($sanPham['gia_nhap'],0)}}
                 </td>
                 <td>
                     {{number_format($sanPham['gia_xuat_goi_y'],0)}}
@@ -62,6 +63,12 @@
                         $soLuongTon=$sanPham['so_luong']-$sanPham['so_luong_da_xuat'];
                     @endphp
                     <b>{{number_format($soLuongTon,0)}}</b>
+                </td>
+                <td>
+                    @php
+                        $thanhTien=$soLuongTon*$sanPham['gia_nhap'];
+                    @endphp
+                    <b>{{number_format($thanhTien,0)}}</b>
                 </td>
                 <td class="text-center">
                     <button class="btn btn-vnpt" href="#" data-toggle="dropdown">
@@ -152,6 +159,32 @@
         });
         
     });
+
+    var lastScrollTop = 0;
+      $(window).scroll(function(event){
+         var st = $(this).scrollTop();
+         console.log(st);
+         if (st > lastScrollTop && st>250){
+             // downscroll code
+             var height=jQuery('#order-listing thead tr').attr('height');
+              jQuery('#order-listing thead tr').css({
+                  'position': 'fixed',
+                  'margin-top': '-270px',
+                  'z-index': '100000'
+              });
+         } else {
+              if(st<250){
+                  // upscroll code
+                  jQuery('#order-listing thead tr').css({
+                      'position': 'relative',
+                      'margin-top': '0px',
+                      'z-index': '100000'
+                  });
+              }
+                
+         }
+         lastScrollTop = st;
+      });
 </script>
 
 
