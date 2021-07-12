@@ -127,7 +127,7 @@
           <div class="card">
             <div class="text-white py-3 px-4">              
               <div class="chart-container">
-                <canvas class="w-100 h-100" id="dashboard-column-1" style="height: 250px !important;"></canvas>
+                <canvas class="w-100 h-100" id="dashboard-column-1" style="height: 500px !important;"></canvas>
               </div>              
             </div>
           </div>
